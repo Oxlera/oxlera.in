@@ -1,562 +1,250 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oxlera — Indoor Green Systems for Modern Workplaces</title>
-  <meta name="description" content="Oxlera designs and maintains premium indoor green systems for offices — with measurable environmental impact and aesthetic excellence." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Oxlera</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/oxlera_logo.png" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #0b0f0c;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.08);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.70);
-      --hairline: rgba(255,255,255,0.12);
-      --shadow: 0 30px 80px rgba(0,0,0,0.55);
-      --radius: 22px;
-
-      /* subtle green accents */
-      --accent: #438918;
-      --accent2:#4fbd42;
-
-      --max: 1120px;
+      --green-dark:#346516;
+      --green-mid:#5b9a17;
+      --green-light:#a7cc2c;
+      --bg:#ffffff;
+      --text:#0b1220;
+      --muted:#6b7280;
+      --border:#e5e7eb;
     }
 
-    *{ box-sizing: border-box; }
-    html, body{ height:100%; }
+    *{box-sizing:border-box}
     body{
       margin:0;
-      background: radial-gradient(1200px 900px at 15% 10%, rgba(79,189,66,0.12), transparent 55%),
-                  radial-gradient(900px 800px at 80% 30%, rgba(67,137,24,0.10), transparent 55%),
-                  var(--bg);
-      color: var(--text);
-      font-family: Manrope, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      letter-spacing: 0.2px;
+      font-family:Inter,system-ui,sans-serif;
+      color:var(--text);
+      background:var(--bg);
     }
 
-    a{ color: inherit; text-decoration: none; }
-    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 20px; }
-
+    /* HEADER */
     header{
-      position: sticky;
+      position:sticky;
       top:0;
-      z-index: 50;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(to bottom, rgba(11,15,12,0.86), rgba(11,15,12,0.55));
-      border-bottom: 1px solid var(--hairline);
+      background:white;
+      border-bottom:1px solid var(--border);
+      z-index:10;
     }
+
     .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
-    }
-    .brand{
-      display:flex; gap:10px; align-items:center;
-      font-weight: 600;
-      letter-spacing: 0.6px;
-    }
-    .logo{
-      width: 34px; height: 34px; border-radius: 12px;
-      background: radial-gradient(circle at 30% 30%, rgba(79,189,66,0.95), rgba(67,137,24,0.95));
-      box-shadow: 0 12px 30px rgba(79,189,66,0.12);
-      border: 1px solid rgba(255,255,255,0.14);
-    }
-    .brand span{ opacity:0.95; }
-    .links{ display:flex; gap:18px; align-items:center; }
-    .links a{
-      font-size: 13px;
-      color: var(--muted);
-      padding: 10px 10px;
-      border-radius: 12px;
-      transition: all .2s ease;
-    }
-    .links a:hover{
-      color: var(--text);
-      background: rgba(255,255,255,0.05);
-    }
-    .cta{ display:flex; gap:10px; align-items:center; }
-    .btn{
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.06);
-      padding: 10px 14px;
-      border-radius: 14px;
-      font-size: 13px;
-      color: var(--text);
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.22);
-    }
-    .btn.primary{
-      border-color: rgba(79,189,66,0.35);
-      background: linear-gradient(180deg, rgba(79,189,66,0.22), rgba(79,189,66,0.10));
-    }
-
-    .hero{ padding: 64px 0 26px; }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 26px;
-      align-items: stretch;
-    }
-    .kicker{
-      font-size: 12px;
-      color: var(--muted);
-      display:flex; gap:10px; align-items:center;
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-    }
-    .dot{
-      width: 8px; height: 8px; border-radius:999px;
-      background: rgba(79,189,66,0.85);
-      box-shadow: 0 0 0 6px rgba(79,189,66,0.10);
-    }
-    h1{
-      margin: 14px 0 10px;
-      font-family: "Playfair Display", serif;
-      font-weight: 500;
-      font-size: 54px;
-      line-height: 1.02;
-      letter-spacing: -0.6px;
-    }
-    .sub{
-      margin: 0 0 22px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.55;
-      max-width: 58ch;
-    }
-    .heroActions{ display:flex; gap:12px; flex-wrap: wrap; margin: 20px 0 0; }
-
-    .heroCard{
-      border-radius: var(--radius);
-      border: 1px solid var(--hairline);
-      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position: relative;
-      min-height: 420px;
-    }
-    .heroCard::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(700px 420px at 40% 30%, rgba(79,189,66,0.14), transparent 55%);
-      pointer-events:none;
-    }
-    .heroImg{
-      position:absolute; inset:0;
-      background-size: cover;
-      background-position: center;
-      filter: saturate(0.95) contrast(1.02) brightness(0.78);
-      transform: scale(1.02);
-    }
-    .heroOverlay{
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(11,15,12,0.15), rgba(11,15,12,0.86));
-    }
-    .heroStats{
-      position:absolute;
-      left: 16px; right: 16px; bottom: 16px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .stat{
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.28);
-      padding: 14px 14px;
-      backdrop-filter: blur(10px);
-    }
-    .stat .n{ font-size: 18px; font-weight: 600; letter-spacing: 0.2px; }
-    .stat .t{ margin-top: 6px; font-size: 12px; color: var(--muted); line-height: 1.35; }
-
-    section{ padding: 54px 0; }
-    .sectionHead{
+      max-width:1100px;
+      margin:auto;
       display:flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 18px;
-      margin-bottom: 20px;
-    }
-    .sectionHead h2{
-      margin:0;
-      font-family: "Playfair Display", serif;
-      font-weight: 500;
-      font-size: 34px;
-      letter-spacing: -0.2px;
-    }
-    .sectionHead p{
-      margin:0;
-      color: var(--muted);
-      max-width: 56ch;
-      line-height: 1.55;
-      font-size: 14px;
-    }
-
-    .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .card{
-      border-radius: var(--radius);
-      border: 1px solid var(--hairline);
-      background: rgba(255,255,255,0.05);
-      padding: 18px;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.065);
-      border-color: rgba(255,255,255,0.20);
-    }
-    .card .label{
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      display:flex; align-items:center; gap:10px;
-      margin-bottom: 10px;
-    }
-    .pill{
-      height: 8px; width: 30px; border-radius: 99px;
-      background: linear-gradient(90deg, rgba(79,189,66,0.9), rgba(67,137,24,0.85));
-      opacity: 0.8;
-    }
-    .card h3{ margin: 0 0 8px; font-size: 18px; font-weight: 600; }
-    .card p{ margin:0; color: var(--muted); font-size: 13.5px; line-height: 1.55; }
-
-    .twoCol{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
-    .imgCard{
-      min-height: 360px;
-      border-radius: var(--radius);
-      border: 1px solid var(--hairline);
-      overflow:hidden;
-      position:relative;
-      background: rgba(255,255,255,0.04);
-      box-shadow: var(--shadow);
-    }
-    .imgCard .bg{
-      position:absolute; inset:0;
-      background-size: cover;
-      background-position: center;
-      filter: saturate(0.95) contrast(1.02) brightness(0.80);
-    }
-    .imgCard .fade{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,15,12,0.15), rgba(11,15,12,0.92)); }
-    .imgCard .cap{ position:absolute; left: 18px; right: 18px; bottom: 18px; color: rgba(255,255,255,0.92); }
-    .cap h3{ margin:0 0 6px; font-size: 18px; font-weight: 600; }
-    .cap p{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.5; }
-
-    .contact{
-      border-radius: calc(var(--radius) + 6px);
-      border: 1px solid rgba(79,189,66,0.22);
-      background: linear-gradient(180deg, rgba(79,189,66,0.12), rgba(255,255,255,0.03));
-      padding: 20px;
-      display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 14px;
       align-items:center;
-    }
-    .contact h3{ margin:0 0 8px; font-size: 18px; font-weight: 600; }
-    .contact p{ margin:0; color: var(--muted); line-height: 1.55; font-size: 13.5px; }
-    .contact form{ display:flex; flex-direction: column; gap: 10px; }
-    input, textarea{
-      background: rgba(0,0,0,0.28);
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 14px;
-      padding: 12px 12px;
-      color: var(--text);
-      font-size: 13px;
-      outline: none;
-    }
-    textarea{ min-height: 92px; resize: vertical; }
-    input:focus, textarea:focus{
-      border-color: rgba(79,189,66,0.35);
-      box-shadow: 0 0 0 6px rgba(79,189,66,0.10);
+      justify-content:space-between;
+      padding:14px 20px;
     }
 
-    footer{ padding: 34px 0 44px; border-top: 1px solid var(--hairline); color: var(--muted); font-size: 13px; }
-    .foot{ display:flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items:center; }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      font-size:18px;
+    }
 
-    @media (max-width: 980px){
-      .heroGrid{ grid-template-columns: 1fr; }
-      .heroCard{ min-height: 380px; }
-      h1{ font-size: 44px; }
-      .grid3{ grid-template-columns: 1fr; }
-      .twoCol{ grid-template-columns: 1fr; }
-      .contact{ grid-template-columns: 1fr; }
-      .links{ display:none; }
+    .brand img{
+      height:38px;
+    }
+
+    .nav a{
+      margin-left:20px;
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:500;
+    }
+
+    .nav a:hover{
+      color:var(--text);
+    }
+
+    /* HERO */
+    .hero{
+      max-width:1100px;
+      margin:80px auto;
+      padding:0 20px;
+    }
+
+    .badge{
+      display:inline-block;
+      background:#eef6e8;
+      color:var(--green-dark);
+      padding:8px 14px;
+      border-radius:20px;
+      font-weight:600;
+      font-size:13px;
+    }
+
+    h1{
+      font-size:48px;
+      line-height:1.1;
+      margin:20px 0;
+    }
+
+    .sub{
+      max-width:600px;
+      font-size:18px;
+      color:var(--muted);
+    }
+
+    .cta{
+      margin-top:30px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 22px;
+      border-radius:14px;
+      font-weight:600;
+      text-decoration:none;
+      margin-right:12px;
+    }
+
+    .btn.primary{
+      background:var(--green-dark);
+      color:white;
+    }
+
+    .btn.secondary{
+      border:1px solid var(--border);
+      color:var(--text);
+    }
+
+    /* SECTIONS */
+    section{
+      max-width:1100px;
+      margin:100px auto;
+      padding:0 20px;
+    }
+
+    h2{
+      font-size:32px;
+      margin-bottom:10px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+      margin-top:30px;
+    }
+
+    .card{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:24px;
+      background:white;
+    }
+
+    /* FOOTER */
+    footer{
+      border-top:1px solid var(--border);
+      padding:30px 20px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media(max-width:700px){
+      h1{font-size:36px}
+      .nav a{display:none}
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="#top" aria-label="Oxlera Home">
-        <div class="logo" aria-hidden="true"></div>
-        <span>OXLERA</span>
-      </a>
 
-      <nav class="links" aria-label="Primary">
-        <a href="#services">Services</a>
-        <a href="#method">Method</a>
-        <a href="#impact">Impact</a>
-        <a href="#work">Work</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="cta">
-        <a class="btn" href="#contact">Request a site visit</a>
-        <a class="btn primary" href="#contact">Get a proposal</a>
-      </div>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="assets/oxlera_logo.png" alt="Oxlera Logo">
+      Oxlera
     </div>
-  </header>
-
-  <main id="top">
-    <div class="wrap hero">
-      <div class="heroGrid">
-        <div>
-          <div class="kicker"><span class="dot"></span> premium indoor green systems</div>
-          <h1>Make your workspace feel like a high end ecosystem.</h1>
-          <p class="sub">
-            Oxlera designs, installs, and maintains minimal, architectural indoor green systems for offices and premium commercial spaces.
-            Built for aesthetics, wellness, and measurable environmental storytelling.
-          </p>
-
-          <div class="heroActions">
-            <a class="btn primary" href="#contact">Book a consultation</a>
-            <a class="btn" href="#work">See sample installations</a>
-            <a class="btn" href="#impact">How impact is measured</a>
-          </div>
-
-          <div style="margin-top:18px; color: var(--muted); font-size: 12.5px; line-height: 1.45;">
-            Typical clients: corporate offices, coworking, boutique hotels, premium clinics, and flagship retail.
-          </div>
-        </div>
-
-        <div class="heroCard" aria-label="Hero image">
-          <!-- Replace with your own photo or a licensed stock image -->
-          <div class="heroImg" style="background-image:url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=70');"></div>
-          <div class="heroOverlay"></div>
-          <div class="heroStats">
-            <div class="stat">
-              <div class="n">Design first</div>
-              <div class="t">Minimal lines, premium materials, clean maintenance</div>
-            </div>
-            <div class="stat">
-              <div class="n">Measurable</div>
-              <div class="t">Optional monitoring and reporting for ESG narratives</div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#contact">Contact</a>
     </div>
+  </div>
+</header>
 
-    <section id="services">
-      <div class="wrap">
-        <div class="sectionHead">
-          <div>
-            <h2>Services</h2>
-            <p>Everything you need for a premium indoor green presence, without operational burden on your team.</p>
-          </div>
-          <p>Modular, scalable, and built to look intentional — not decorative.</p>
-        </div>
+<div class="hero">
+  <span class="badge">Minimal · Sustainable · Indoor</span>
+  <h1>Indoor sustainability,<br>without the noise.</h1>
+  <p class="sub">
+    Oxlera helps offices bring greenery indoors using a clean,
+    minimal system focused on long-term sustainability and clarity.
+  </p>
+  <div class="cta">
+    <a href="#contact" class="btn primary">Talk to us</a>
+    <a href="#features" class="btn secondary">Learn more</a>
+  </div>
+</div>
 
-        <div class="grid3">
-          <div class="card">
-            <div class="label"><span class="pill"></span> Design</div>
-            <h3>Architectural green walls and grid systems</h3>
-            <p>Space planning, plant selection for indoor conditions, lighting strategy, and material finishes aligned to your interiors.</p>
-          </div>
-          <div class="card">
-            <div class="label"><span class="pill"></span> Build</div>
-            <h3>Installation and commissioning</h3>
-            <p>On site setup, irrigation planning if needed, safety checks, and a clean handover experience.</p>
-          </div>
-          <div class="card">
-            <div class="label"><span class="pill"></span> Maintain</div>
-            <h3>Ongoing care and premium upkeep</h3>
-            <p>Scheduled visits, replacements, health monitoring, and predictable monthly plans that keep it looking launch day fresh.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<section id="features">
+  <h2>Why Oxlera</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Minimal design</h3>
+      <p>No visual clutter. Solid colors. Clean layouts.</p>
+    </div>
+    <div class="card">
+      <h3>Office-first</h3>
+      <p>Designed specifically for indoor workspaces.</p>
+    </div>
+    <div class="card">
+      <h3>Measurable</h3>
+      <p>Built to support reporting and sustainability goals.</p>
+    </div>
+  </div>
+</section>
 
-    <section id="method">
-      <div class="wrap">
-        <div class="sectionHead">
-          <div>
-            <h2>How it works</h2>
-            <p>Simple process. High control. No chaos on site.</p>
-          </div>
-          <p>From walkthrough to maintenance plan — built like a premium project, not a hobby.</p>
-        </div>
+<section id="how">
+  <h2>How it works</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>1. Assess</h3>
+      <p>Understand space, light, and constraints.</p>
+    </div>
+    <div class="card">
+      <h3>2. Install</h3>
+      <p>Clean, quick installation with minimal disruption.</p>
+    </div>
+    <div class="card">
+      <h3>3. Maintain</h3>
+      <p>Predictable maintenance and simple updates.</p>
+    </div>
+  </div>
+</section>
 
-        <div class="twoCol">
-          <div class="card">
-            <div class="label"><span class="pill"></span> Step 01</div>
-            <h3>Site walk and intent</h3>
-            <p>We map light, airflow, usage patterns, and the visual quiet luxury you want: calm, clean, and intentional.</p>
+<section id="contact">
+  <h2>Let’s talk</h2>
+  <p class="sub">Reach out to explore how Oxlera fits your workspace.</p>
+  <div class="cta">
+    <a href="mailto:contact@oxlera.in" class="btn primary">Email us</a>
+  </div>
+</section>
 
-            <div style="height:12px"></div>
+<footer>
+  © <span id="year"></span> Oxlera. All rights reserved.
+</footer>
 
-            <div class="label"><span class="pill"></span> Step 02</div>
-            <h3>Design and bill of materials</h3>
-            <p>You receive a clear layout, plant palette, finishes, and a proposal with options (good, better, best).</p>
+<script>
+  document.getElementById("year").innerText = new Date().getFullYear();
+</script>
 
-            <div style="height:12px"></div>
-
-            <div class="label"><span class="pill"></span> Step 03</div>
-            <h3>Install and maintain</h3>
-            <p>We install with minimal disruption, then keep it consistently pristine with scheduled maintenance.</p>
-          </div>
-
-          <div class="imgCard">
-            <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=70');"></div>
-            <div class="fade"></div>
-            <div class="cap">
-              <h3>Quiet luxury, not clutter</h3>
-              <p>Clean geometry, controlled texture, and materials that match premium interiors.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="impact">
-      <div class="wrap">
-        <div class="sectionHead">
-          <div>
-            <h2>Impact reporting</h2>
-            <p>If you want measurable, we can build a reporting layer — designed for credibility, not gimmicks.</p>
-          </div>
-          <p>Best used for internal ESG storytelling and occupant wellness metrics.</p>
-        </div>
-
-        <div class="grid3">
-          <div class="card">
-            <div class="label"><span class="pill"></span> Indoor air</div>
-            <h3>Environmental context monitoring</h3>
-            <p>Track CO2 concentration trends, temperature, humidity, and lighting conditions to contextualize plant performance.</p>
-          </div>
-          <div class="card">
-            <div class="label"><span class="pill"></span> Plant health</div>
-            <h3>System health and maintenance logs</h3>
-            <p>Document visits, replacements, and plant health — useful for facilities teams and audits.</p>
-          </div>
-          <div class="card">
-            <div class="label"><span class="pill"></span> Reporting</div>
-            <h3>Monthly or quarterly dashboards</h3>
-            <p>Simple, executive-friendly reporting that translates green design into clear narratives and operational proof.</p>
-          </div>
-        </div>
-
-        <div style="margin-top:14px; color: var(--muted); font-size: 12.5px; line-height: 1.45;">
-          Note: Claims about carbon capture should be framed carefully. Indoor plants support wellbeing and microclimate effects,
-          but carbon credit grade claims require strict methodologies, boundaries, and verification.
-        </div>
-      </div>
-    </section>
-
-    <section id="work">
-      <div class="wrap">
-        <div class="sectionHead">
-          <div>
-            <h2>Selected work</h2>
-            <p>Replace these with your actual photos as soon as you have installations. Real photos are what make it look premium.</p>
-          </div>
-          <p>Minimal captions. Maximum confidence.</p>
-        </div>
-
-        <div class="twoCol">
-          <div class="imgCard">
-            <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1526887593587-a307ea5d46b4?auto=format&fit=crop&w=1600&q=70');"></div>
-            <div class="fade"></div>
-            <div class="cap">
-              <h3>Reception feature wall</h3>
-              <p>Brand-first, camera-ready, and maintained for consistency.</p>
-            </div>
-          </div>
-
-          <div class="imgCard">
-            <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1523413451909-8f48f93455f8?auto=format&fit=crop&w=1600&q=70');"></div>
-            <div class="fade"></div>
-            <div class="cap">
-              <h3>Open office zoning</h3>
-              <p>Green partitions that feel architectural, not temporary.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="wrap">
-        <div class="sectionHead">
-          <div>
-            <h2>Contact</h2>
-            <p>Share your city, space size, and a couple of interior photos. We will respond with next steps.</p>
-          </div>
-          <p>Premium means we keep it simple.</p>
-        </div>
-
-        <div class="contact">
-          <div>
-            <h3>Get a proposal</h3>
-            <p>
-              We typically start with a site visit or video walkthrough, then share a short concept and a pricing range.
-              If you want impact reporting, mention it here.
-            </p>
-            <div style="height:14px"></div>
-            <div style="color:var(--muted); font-size: 12.5px; line-height: 1.45;">
-              Email: <span style="color:rgba(255,255,255,0.9)">hello@oxlera.in</span> &nbsp;|&nbsp;
-              Phone: <span style="color:rgba(255,255,255,0.9)">+91 XXXXXXXXXX</span>
-            </div>
-          </div>
-
-          <form onsubmit="return sendMail(event)">
-            <input id="name" type="text" placeholder="Your name" required />
-            <input id="email" type="email" placeholder="Work email" required />
-            <textarea id="msg" placeholder="City, space type, approximate area, and what you want to build" required></textarea>
-            <button class="btn primary" type="submit">Send</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="wrap foot">
-        <div>© <span id="year"></span> Oxlera. All rights reserved.</div>
-        <div style="display:flex; gap:14px; flex-wrap:wrap;">
-          <a href="#services">Services</a>
-          <a href="#impact">Impact</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    function sendMail(e){
-      e.preventDefault();
-      const name = encodeURIComponent(document.getElementById("name").value.trim());
-      const email = encodeURIComponent(document.getElementById("email").value.trim());
-      const msg = encodeURIComponent(document.getElementById("msg").value.trim());
-
-      const subject = encodeURIComponent("Oxlera Website Enquiry");
-      const body = encodeURIComponent(
-        `Name: ${decodeURIComponent(name)}\nEmail: ${decodeURIComponent(email)}\n\n${decodeURIComponent(msg)}`
-      );
-
-      window.location.href = `mailto:hello@oxlera.in?subject=${subject}&body=${body}`;
-      return false;
-    }
-  </script>
 </body>
 </html>
