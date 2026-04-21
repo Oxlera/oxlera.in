@@ -31,20 +31,22 @@ function Hero() {
 
       {/* 2. LEFT GREEN BACKGROUND (FIXED LAYERING) */}
       <div className="absolute inset-0 z-[1] pointer-events-none">
+{/* 2. LEFT GREEN BACKGROUND (derived from green-900 theme) */}
+    <div className="absolute inset-0 z-[1] pointer-events-none">
 
-  {/* Soft base wash (much lighter) */}
-  <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-[#14532d]/10 via-[#14532d]/5 to-transparent" />
+      {/* Soft base wash from green-900 */}
+      <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-[#14532d]/20 via-[#14532d]/10 to-transparent" />
 
-  {/* Very subtle radial glow */}
-  <div className="absolute top-0 left-0 w-[60%] h-full bg-[radial-gradient(circle_at_left,#14532d08,transparent_70%)]" />
+      {/* Radial glow using same base color */}
+      <div className="absolute top-0 left-0 w-[60%] h-full bg-[radial-gradient(circle_at_left,#14532d15,transparent_65%)]" />
 
-  {/* Ultra soft floating highlight */}
-  <div className="absolute top-[20%] left-[10%] w-[45%] h-[45%] bg-[#14532d]/5 blur-[140px] rounded-full" />
+      {/* Subtle highlight layer */}
+      <div className="absolute top-[15%] left-[10%] w-[40%] h-[40%] bg-[#14532d]/10 blur-[120px] rounded-full" />
 
-  {/* Divider line (barely visible) */}
-  <div className="absolute left-[55%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[#14532d]/10 to-transparent" />
-
+      {/* Divider line (same green tone, very subtle) */}
+  <div className="absolute left-[55%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[#14532d]/20 to-transparent" />
 </div>
+      </div>
 
       {/* MAIN CONTENT */}
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-20 items-center z-10 lg:pl-6 xl:pl-2">
