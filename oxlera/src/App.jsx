@@ -7,6 +7,8 @@ import Divisions from './components/Divisions';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import About from './components/About';
+import NatureSection from "./components/NatureSection";
+import Blogs from './components/Blogs';
 
 import CarbonCalculator from './components/CarbonCalculator';
 
@@ -17,6 +19,7 @@ function HomePage() {
       <About />
       <Features />
       <Divisions />
+      <NatureSection />
       <Contact />
       <Footer />
     </>
@@ -34,6 +37,9 @@ function App() {
 
         {/* Carbon calculator page */}
         <Route path="/carbon-analysis" element={<CarbonCalculator />} />
+
+        {/* Blog page */}
+        <Route path="/blogs" element={<Blogs />} />
       </Routes>
     </BrowserRouter>
   );

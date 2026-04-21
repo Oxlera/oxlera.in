@@ -1,159 +1,167 @@
-  import React from 'react';
+import React from 'react';
 
-  function Hero() {
-    return (
-      <section className="relative overflow-hidden bg-[#fafaf9]">
-        
-        {/* Subtle Pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.12]" 
-          style={{ 
-            backgroundImage: `radial-gradient(#1f6f3b 0.5px, transparent 0.5px)`, 
-            backgroundSize: '26px 26px' 
-          }}
+function Hero() {
+  return (
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#fbfdfc] pt-[140px] pb-24">
+      
+      {/* 1. THE "HIGH-END" CANVAS (Grain + Mesh) */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Grain Overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.2] mix-blend-multiply"
+          style={{ backgroundImage: `url("https://grainy-gradients.vercel.app/noise.svg")` }}
         />
 
-        {/* Soft Glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#fafaf9_72%)]" />
+        {/* Mesh Gradients */}
+        <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] rounded-full bg-emerald-100/40 blur-[140px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-blue-100/30 blur-[120px]" />
+        <div className="absolute top-[20%] right-[10%] w-[30%] h-[40%] rounded-full bg-yellow-50/40 blur-[100px]" />
 
-        <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-24 md:pt-44 md:pb-40">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        {/* Grid */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)`,
+            backgroundSize: '80px 80px',
+            maskImage: 'radial-gradient(ellipse at center, black, transparent 80%)',
+            opacity: 0.2,
+          }}
+        />
+      </div>
 
-            {/* LEFT */}
-            <div className="flex flex-col items-start z-10">
+      {/* 2. LEFT GREEN BACKGROUND (FIXED LAYERING) */}
+      <div className="absolute inset-0 z-[1] pointer-events-none">
 
-              {/* Badge */}
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white border border-stone-200 shadow-sm mb-8">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-green-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
-                </span>
-                <span className="text-stone-600 text-[11px] font-bold tracking-[0.25em] uppercase">
-                  Carbon Intelligence System
-                </span>
-              </div>
+  {/* Soft base wash (much lighter) */}
+  <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-[#14532d]/10 via-[#14532d]/5 to-transparent" />
 
-              {/* Headline */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
-                
-                Measure. Reduce. <br />
-                Offset.{' '}
-                <span className="relative inline-block">
-                  <span className="text-green-800 font-serif italic font-normal">
-                    Trade carbon.
-                  </span>
-                  <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 300 12" fill="none">
-                    <path d="M2 10C60 5 110 2 150 2C210 2 255 5 298 10"
-                      stroke="#15803d"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      opacity="0.25"/>
-                  </svg>
-                </span>
+  {/* Very subtle radial glow */}
+  <div className="absolute top-0 left-0 w-[60%] h-full bg-[radial-gradient(circle_at_left,#14532d08,transparent_70%)]" />
 
-              </h1>
+  {/* Ultra soft floating highlight */}
+  <div className="absolute top-[20%] left-[10%] w-[45%] h-[45%] bg-[#14532d]/5 blur-[140px] rounded-full" />
 
-              {/* Subtext */}
-              <p className="mt-8 max-w-xl text-lg md:text-xl text-stone-600 leading-relaxed font-medium">
-                A unified platform to calculate carbon emissions, generate verified carbon credits, and enable transparent carbon trading for businesses moving toward net-zero.
-              </p>
+  {/* Divider line (barely visible) */}
+  <div className="absolute left-[55%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[#14532d]/10 to-transparent" />
 
-              {/* Action Buttons */}
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <a href="#contact"
-                  className="px-10 py-4 bg-green-900 text-white font-bold rounded-full shadow-lg hover:bg-black transition-all duration-300 text-center">
-                  Calculate Emissions
-                </a>
+</div>
 
-                <a href="#features"
-                  className="px-10 py-4 border border-stone-300 text-stone-900 font-bold rounded-full hover:bg-stone-100 transition-all duration-300 text-center">
-                  Explore Platform
-                </a>
-              </div>
+      {/* MAIN CONTENT */}
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-20 items-center z-10 lg:pl-6 xl:pl-2">
+        
+        {/* LEFT CONTENT */}
+        <div className="flex flex-col max-w-[520px]">
+  
+          {/* Headline */}
+          <h1 className="text-6xl md:text-7xl xl:text-[72px] font-bold text-slate-950 leading-[0.95] tracking-[-0.04em]">
+            Precision <br />
+            <span className="text-emerald-950/20 italic font-light">meets</span> <br />
+            <span className="relative inline-block">
+              Sustainability.
+              <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 400 8" fill="none">
+                <path d="M1 5.5C50 2 150 2 399 5.5" stroke="#10b981" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </span>
+          </h1>
 
-              {/* Trust Metrics */}
-              <div className="mt-12 flex items-center gap-6">
-                <div>
-                  <span className="text-2xl font-bold text-slate-900 italic">CO₂</span>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-stone-400">Tracked</div>
-                </div>
+          {/* Subtext */}
+          <p className="mt-10 max-w-md text-lg md:text-xl text-slate-600 font-medium leading-relaxed">
+            The world’s most advanced carbon ledger. Engineered for enterprises to{' '}
+            <span className="text-slate-950 font-bold">measure, tokenize, and trade</span>{' '}
+            environmental impact with 100% transparency.
+          </p>
 
-                <div className="w-px h-8 bg-stone-200" />
+          {/* CTA */}
+          <div className="mt-12 flex flex-col sm:flex-row gap-5">
+            <button className="px-10 py-5 bg-slate-950 text-white font-bold rounded-2xl shadow-2xl hover:bg-emerald-900 transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center">
+              Enter Platform
+              <div className="ml-3 w-6 h-px bg-emerald-400"></div>
+            </button>
+            <button className="px-10 py-5 bg-white border border-slate-200 text-slate-900 font-bold rounded-2xl hover:border-emerald-300 transition-all shadow-sm">
+              View Framework
+            </button>
+          </div>
 
-                <div>
-                  <span className="text-2xl font-bold text-slate-900 italic">ESG</span>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-stone-400">Aligned</div>
-                </div>
-
-                <div className="w-px h-8 bg-stone-200" />
-
-                <div>
-                  <span className="text-2xl font-bold text-slate-900 italic">CREDITS</span>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-stone-400">Generated</div>
-                </div>
-              </div>
-
+          {/* Logos */}
+          <div className="mt-20">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-6">
+              Infrastructure for industry leaders
+            </p>
+            <div className="flex gap-8 items-center opacity-40 grayscale">
+              <div className="h-6 w-24 bg-slate-400 rounded-sm" />
+              <div className="h-6 w-20 bg-slate-400 rounded-sm" />
+              <div className="h-6 w-28 bg-slate-400 rounded-sm" />
             </div>
-
-            {/* RIGHT */}
-            <div className="relative flex justify-center lg:justify-end">
-
-              <div className="relative w-full max-w-[450px] aspect-square flex items-center justify-center">
-
-                {/* Glow */}
-                <div className="absolute inset-0 bg-green-100/40 rounded-full blur-3xl" />
-
-                {/* SVG (keep yours, slightly improved contrast) */}
-                <svg viewBox="0 0 200 240" className="w-full h-auto relative z-10">
-
-                  <path d="M75 190 L125 190 L120 220 L80 220 Z" fill="#1f1f1f" />
-                  <rect x="72" y="185" width="56" height="6" rx="1" fill="#2f2f2f" />
-
-                  <path 
-                    d="M100 185 Q100 130 100 70"
-                    stroke="#166534"
-                    strokeWidth="3"
-                    fill="none"
-                    strokeLinecap="round"
-                    className="animate-[draw_1.5s_ease-out_forwards]"
-                    style={{ strokeDasharray: 120, strokeDashoffset: 120 }}
-                  />
-
-                  <g className="animate-[grow_1.2s_ease-out_0.6s_forwards] origin-[100px_150px] scale-0">
-                    <path d="M100 150 C70 150 55 130 55 110 C55 140 85 150 100 150" fill="#65a30d" />
-                  </g>
-
-                  <g className="animate-[grow_1.2s_ease-out_1s_forwards] origin-[100px_120px] scale-0">
-                    <path d="M100 120 C130 120 145 100 145 80 C145 110 115 120 100 120" fill="#4d7c0f" />
-                  </g>
-
-                  <g className="animate-[grow_1.2s_ease-out_1.4s_forwards] origin-[100px_70px] scale-0">
-                    <path d="M100 70 C100 50 115 30 100 10 C85 30 100 50 100 70" fill="#3f6212" />
-                  </g>
-
-                </svg>
-
-                <div className="absolute bottom-10 w-40 h-4 bg-stone-900/5 rounded-full blur-md" />
-
-              </div>
-            </div>
-
           </div>
         </div>
 
-        <style jsx>{`
-          @keyframes draw {
-            to { stroke-dashoffset: 0; }
-          }
-          @keyframes grow {
-            0% { transform: scale(0) rotate(-5deg); opacity: 0; }
-            60% { transform: scale(1.05) rotate(2deg); opacity: 1; }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; }
-          }
-        `}</style>
+        {/* RIGHT VISUAL */}
+        <div className="relative lg:scale-110">
+          <div className="relative w-full aspect-[4/5] max-w-[550px] mx-auto">
+            
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/20 to-blue-50/20 rounded-[3rem] border border-white shadow-2xl rotate-3"></div>
 
-      </section>
-    );
-  }
+            <div className="absolute top-10 left-0 right-0 bottom-10 bg-white/80 backdrop-blur-3xl rounded-[2.5rem] border border-white shadow-2xl p-8 overflow-hidden z-10 animate-float">
+              <div className="flex justify-between items-start mb-8">
+                <div>
+                  <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Global Emissions</h3>
+                  <p className="text-3xl font-bold text-slate-900 mt-1">
+                    42,840.00 <span className="text-emerald-500 text-sm">tCO₂e</span>
+                  </p>
+                </div>
+                <div className="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-[10px] font-black border border-emerald-100">
+                  REAL-TIME
+                </div>
+              </div>
 
-  export default Hero;
+              <div className="space-y-4">
+                {[70, 40, 90].map((w, i) => (
+                  <div key={i} className="h-2 bg-slate-50 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full"
+                      style={{ width: `${w}%` }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 mt-8">
+                <div className="p-4 bg-slate-50/50 rounded-2xl border border-slate-100">
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">Carbon Price</p>
+                  <p className="text-xl font-bold text-slate-900">$84.12</p>
+                </div>
+                <div className="p-4 bg-emerald-900 text-white rounded-2xl">
+                  <p className="text-[9px] font-bold text-emerald-300 uppercase tracking-tighter">Inventory</p>
+                  <p className="text-xl font-bold">12.4k</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute -right-8 bottom-20 w-64 bg-white p-6 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white z-20 animate-float-delayed">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-blue-600"></div>
+                <div>
+                  <p className="text-xs font-bold text-slate-950 leading-none">Amazonia Reforest</p>
+                  <p className="text-[10px] text-slate-400 mt-1">Serial: #8291-X</p>
+                </div>
+              </div>
+              <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+                <div className="h-full w-[80%] bg-emerald-500"></div>
+              </div>
+              <div className="mt-3 flex justify-between items-center">
+                <span className="text-[10px] font-bold text-slate-400">Verified by Verra</span>
+                <span className="text-[10px] font-bold text-emerald-600">CERTIFIED</span>
+              </div>
+            </div>
+
+            <div className="absolute -top-10 -left-10 w-32 h-32 bg-yellow-200/20 rounded-full blur-2xl animate-pulse"></div>
+            <div className="absolute top-1/2 right-[-20%] w-40 h-40 bg-blue-200/20 rounded-full blur-3xl"></div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Hero;

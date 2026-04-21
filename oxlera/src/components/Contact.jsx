@@ -1,95 +1,100 @@
-import React from 'react';
+import React from "react";
 
 function Contact() {
   return (
-    <section id="contact" className="max-w-[1100px] mx-auto py-24 px-6">
+    <section
+      id="contact"
+      className="relative bg-[#f4f8f5] py-24 px-5 sm:px-8 overflow-hidden"
+    >
+      {/* Background Blobs */}
+      <div className="absolute top-[-10%] right-[-10%] w-[400px] h-[400px] bg-emerald-200/30 blur-[120px] rounded-full" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[350px] h-[350px] bg-green-200/25 blur-[120px] rounded-full" />
 
-      <div className="relative overflow-hidden bg-gradient-to-br from-green-900 via-green-800 to-slate-900 rounded-3xl px-8 md:px-16 py-20 md:py-24">
+      <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
-        {/* Background glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-32 -right-32 w-[450px] h-[450px] bg-green-500/10 rounded-full blur-[120px]" />
-          <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-emerald-600/8 rounded-full blur-[100px]" />
-        </div>
-
-        {/* Dot grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
-          style={{
-            backgroundImage: `radial-gradient(white 1px, transparent 1px)`,
-            backgroundSize: '28px 28px'
-          }}
-        />
-
-        <div className="relative z-10 max-w-3xl mx-auto text-center">
-
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/8 backdrop-blur-md rounded-full border border-white/10">
-            <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-200/80 font-bold tracking-[0.2em] uppercase text-[10px]">
-              Carbon Platform Support
-            </span>
-          </div>
-
+        {/* LEFT: TEXT */}
+        <div>
           {/* Heading */}
-          <h2 className="mt-10 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-            Start your{' '}
-            <span className="text-green-300 font-serif italic font-normal">
-              carbon journey
+          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
+            Start your{" "}
+            <span className="text-emerald-800 font-serif italic font-normal">
+              carbon transformation
             </span>
           </h2>
 
           {/* Description */}
-          <p className="mt-8 text-base md:text-lg text-green-100/60 font-medium leading-relaxed max-w-2xl mx-auto">
-            Share your organization details and we'll help you build a complete
-            carbon measurement, reduction, and ESG reporting roadmap.
+          <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed max-w-md">
+            Talk to our team to design a tailored carbon accounting, ESG reporting,
+            and emissions reduction system for your organisation.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-
-            <a
-              href="mailto:contact@oxlera.com?subject=Carbon Assessment Request"
-              className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-white text-green-900 font-bold rounded-xl hover:bg-green-50 transition-all duration-300 shadow-lg shadow-black/10 active:scale-[0.97]"
-            >
-              Request Carbon Assessment
-              <span className="group-hover:translate-x-0.5 transition-transform">→</span>
-            </a>
-
-            <a
-              href="mailto:contact@oxlera.com?subject=ESG Reporting Inquiry"
-              className="w-full sm:w-auto flex items-center justify-center px-8 py-4 border border-white/15 text-white/90 font-semibold rounded-xl hover:bg-white/8 hover:border-white/25 transition-all duration-300"
-            >
-              ESG Reporting Demo
-            </a>
-
-          </div>
-
-          {/* Trust Strip */}
-          <div className="mt-14 pt-8 border-t border-white/8">
-            <div className="flex flex-wrap justify-center gap-8 text-green-200/50 text-xs font-semibold tracking-wide uppercase">
-              <span className="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
-                </svg>
-                24h Response
+          {/* Info Cards */}
+          <div className="mt-10 space-y-4">
+            <div className="flex items-center gap-3 text-slate-600">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-sm font-medium">
+                Response within 24 hours
               </span>
-              <span className="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 3v18h18M7 14l3-3 4 4 6-6" />
-                </svg>
-                Scope 1–3 Coverage
+            </div>
+
+            <div className="flex items-center gap-3 text-slate-600">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-sm font-medium">
+                Scope 1–3 carbon coverage
               </span>
-              <span className="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
-                </svg>
-                ESG Ready
+            </div>
+
+            <div className="flex items-center gap-3 text-slate-600">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-sm font-medium">
+                ESG & compliance ready reporting
               </span>
             </div>
           </div>
+        </div>
+
+        {/* RIGHT: FORM CARD */}
+        <div className="bg-white/80 backdrop-blur-xl border border-green-100 shadow-xl rounded-3xl p-6 sm:p-10">
+
+          <div className="space-y-5">
+
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 outline-none text-sm"
+            />
+
+            <input
+              type="email"
+              placeholder="Business Email"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 outline-none text-sm"
+            />
+
+            <input
+              type="text"
+              placeholder="Company Name"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 outline-none text-sm"
+            />
+
+            <textarea
+              rows="4"
+              placeholder="Tell us about your requirements..."
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 outline-none text-sm resize-none"
+            />
+
+            <button className="w-full py-3.5 bg-emerald-900 text-white font-bold rounded-xl hover:bg-slate-900 transition-all shadow-lg">
+              Request Consultation →
+            </button>
+
+          </div>
+
+          {/* Footer note */}
+          <p className="text-xs text-slate-400 text-center mt-5">
+            We never share your information. Secure & confidential.
+          </p>
 
         </div>
+
       </div>
     </section>
   );
