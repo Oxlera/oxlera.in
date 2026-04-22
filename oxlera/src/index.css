@@ -105,3 +105,36 @@ input:focus {
 input:focus-visible {
   outline: none !important;
 }
+
+/* ───── Ripple Animation System ───── */
+
+.ripple {
+  position: absolute;
+  border-radius: 9999px;
+  border: 2px solid rgba(22, 101, 52, 0.35);
+  animation: ripple 4.5s ease-out infinite;
+  opacity: 0;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* ───── Delay Utilities ───── */
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}

@@ -15,142 +15,135 @@ function CarbonCalculator() {
     airTravel: 0.12, waste: 0.5, commute: 0.1
   };
 
-  const calculateScope1 = () => (data.diesel * factors.diesel + data.petrol * factors.petrol + data.naturalGas * factors.naturalGas) / 1000;
-  const calculateScope2 = () => (data.electricity * factors.electricity) / 1000;
-  const calculateScope3 = () => (data.airTravel * factors.airTravel + data.waste * factors.waste + data.employeeCommute * factors.commute) / 1000;
+  const calculateScope1 = () =>
+    (data.diesel * factors.diesel + data.petrol * factors.petrol + data.naturalGas * factors.naturalGas) / 1000;
 
-  const totalEmissions = calculateScope1() + calculateScope2() + calculateScope3();
+  const calculateScope2 = () =>
+    (data.electricity * factors.electricity) / 1000;
+
+  const calculateScope3 = () =>
+    (data.airTravel * factors.airTravel + data.waste * factors.waste + data.employeeCommute * factors.commute) / 1000;
+
+  const total = calculateScope1() + calculateScope2() + calculateScope3();
 
   const handleInputChange = (e) => {
     setData({ ...data, [e.target.name]: parseFloat(e.target.value) || 0 });
   };
 
   return (
-    <div className="relative min-h-screen bg-[#eef6f0] pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 px-4 sm:px-6">
+    <div className="relative min-h-screen pt-28 pb-20 px-5 bg-[#f7fbf8] overflow-hidden">
 
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
-           style={{ backgroundImage: `radial-gradient(#166534 0.5px, transparent 0.5px)`, backgroundSize: '30px 30px' }} />
-      <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-green-200/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[300px] bg-emerald-100/30 rounded-full blur-3xl pointer-events-none" />
+      {/* AMBIENT GLOW (matches Hero system) */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-emerald-500/10 blur-[160px] rounded-full" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-green-700/10 blur-[180px] rounded-full" />
+      </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
 
-        {/* Header Section */}
-        <div className="mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 border border-green-200 text-green-800 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-3 sm:mb-4">
-            <PieChart size={11} /> ESG Reporting Tool
+        {/* HEADER */}
+        <div className="mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur border border-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-widest">
+            <PieChart size={12} /> ESG Intelligence Engine
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Carbon Emission <span className="text-green-800 italic font-serif font-normal">Calculator</span>
+
+          <h1 className="text-5xl md:text-6xl font-bold mt-5 text-slate-900 leading-tight">
+            Carbon Emission <span className="text-emerald-800 italic font-light">Calculator</span>
           </h1>
-          <p className="mt-3 sm:mt-4 text-stone-600 max-w-2xl font-medium text-sm sm:text-base">
-            Quantify your organisation's environmental impact across all scopes. Aligned with GHG Protocol and BRSR reporting standards for comprehensive ESG compliance.
+
+          <p className="mt-4 max-w-2xl text-slate-600 text-lg leading-relaxed">
+            Measure, simulate, and optimize your carbon footprint across Scopes 1, 2, and 3 with real-time emission intelligence.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid lg:grid-cols-3 gap-10">
 
-          {/* Left: Input Sections */}
-          <div className="lg:col-span-2 space-y-5 sm:space-y-6">
+          {/* LEFT PANEL */}
+          <div className="lg:col-span-2 space-y-6">
 
-            {/* Tabs Navigation */}
-            <div className="flex bg-white p-1 sm:p-1.5 rounded-2xl border border-green-100/60 shadow-sm">
+            {/* TABS */}
+            <div className="flex p-1 rounded-2xl bg-white/60 backdrop-blur border border-emerald-100">
               {[
-                { id: 'scope1', label: 'Scope 1', icon: <Factory size={14}/>, desc: 'Direct Emissions' },
-                { id: 'scope2', label: 'Scope 2', icon: <Zap size={14}/>, desc: 'Indirect Energy' },
-                { id: 'scope3', label: 'Scope 3', icon: <Truck size={14}/>, desc: 'Value Chain' }
-              ].map((tab) => (
+                { id: 'scope1', label: 'Scope 1', icon: <Factory size={14}/> },
+                { id: 'scope2', label: 'Scope 2', icon: <Zap size={14}/> },
+                { id: 'scope3', label: 'Scope 3', icon: <Truck size={14}/> }
+              ].map(tab => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 flex flex-col items-center py-2.5 sm:py-3 rounded-xl transition-all ${
-                    activeTab === tab.id ? 'bg-green-900 text-white shadow-lg' : 'text-stone-500 hover:bg-green-50'
+                  className={`flex-1 py-3 rounded-xl font-bold text-sm transition-all ${
+                    activeTab === tab.id
+                      ? 'bg-emerald-900 text-white shadow-lg'
+                      : 'text-slate-500 hover:bg-emerald-50'
                   }`}
                 >
-                  <div className="flex items-center gap-1.5 sm:gap-2 font-bold text-xs sm:text-sm">
-                    {tab.icon} {tab.label}
+                  <div className="flex items-center justify-center gap-2">
+                    {tab.icon}
+                    {tab.label}
                   </div>
-                  <span className={`text-[9px] sm:text-[10px] mt-0.5 ${activeTab === tab.id ? 'text-green-200' : 'text-stone-400'}`}>
-                    {tab.desc}
-                  </span>
                 </button>
               ))}
             </div>
 
-            {/* Form Card */}
-            <div className="bg-white rounded-3xl border border-green-100/50 p-5 sm:p-6 md:p-8 shadow-sm min-h-[320px] sm:min-h-[400px]">
+            {/* INPUT CARD */}
+            <div className="rounded-3xl bg-white/70 backdrop-blur-xl border border-white shadow-xl p-8">
+
               {activeTab === 'scope1' && (
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 flex items-center gap-2">
-                    Direct Emissions <Info size={15} className="text-stone-300" />
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                    <InputField label="Diesel Consumption (Litres)" name="diesel" value={data.diesel} onChange={handleInputChange} />
-                    <InputField label="Petrol Consumption (Litres)" name="petrol" value={data.petrol} onChange={handleInputChange} />
-                    <InputField label="Natural Gas (m³)" name="naturalGas" value={data.naturalGas} onChange={handleInputChange} />
-                  </div>
-                </div>
+                <Section title="Direct Emissions">
+                  <Input label="Diesel (L)" name="diesel" onChange={handleInputChange} />
+                  <Input label="Petrol (L)" name="petrol" onChange={handleInputChange} />
+                  <Input label="Natural Gas (m³)" name="naturalGas" onChange={handleInputChange} />
+                </Section>
               )}
 
               {activeTab === 'scope2' && (
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 flex items-center gap-2">
-                    Purchased Electricity <Info size={15} className="text-stone-300" />
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                    <InputField label="Grid Electricity (kWh)" name="electricity" value={data.electricity} onChange={handleInputChange} />
-                    <InputField label="Renewable Energy Used (kWh)" name="renewable" value={data.renewable} onChange={handleInputChange} />
-                  </div>
-                </div>
+                <Section title="Energy Consumption">
+                  <Input label="Electricity (kWh)" name="electricity" onChange={handleInputChange} />
+                  <Input label="Renewable Energy (kWh)" name="renewable" onChange={handleInputChange} />
+                </Section>
               )}
 
               {activeTab === 'scope3' && (
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 flex items-center gap-2">
-                    Indirect Value Chain <Info size={15} className="text-stone-300" />
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                    <InputField label="Business Travel (km)" name="airTravel" value={data.airTravel} onChange={handleInputChange} />
-                    <InputField label="Waste Generated (kg)" name="waste" value={data.waste} onChange={handleInputChange} />
-                    <InputField label="Employee Commute (km)" name="employeeCommute" value={data.employeeCommute} onChange={handleInputChange} />
-                  </div>
-                </div>
+                <Section title="Value Chain Emissions">
+                  <Input label="Travel (km)" name="airTravel" onChange={handleInputChange} />
+                  <Input label="Waste (kg)" name="waste" onChange={handleInputChange} />
+                  <Input label="Commute (km)" name="employeeCommute" onChange={handleInputChange} />
+                </Section>
               )}
+
             </div>
           </div>
 
-          {/* Right: Summary Sidebar */}
+          {/* RIGHT SUMMARY */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-3xl border border-green-100/50 p-6 sm:p-8 shadow-xl lg:sticky lg:top-32">
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-6 sm:mb-8 tracking-tight">Emissions Summary</h3>
 
-              <div className="space-y-5 sm:space-y-6 mb-6 sm:mb-8">
-                <ResultRow label="Scope 1" value={calculateScope1()} color="bg-orange-500" />
-                <ResultRow label="Scope 2" value={calculateScope2()} color="bg-blue-500" />
-                <ResultRow label="Scope 3" value={calculateScope3()} color="bg-green-600" />
+            <div className="sticky top-28 rounded-3xl bg-white/70 backdrop-blur-xl border border-white shadow-2xl p-8">
+
+              <h3 className="text-lg font-bold text-slate-900 mb-6">
+                Emissions Overview
+              </h3>
+
+              <div className="space-y-5">
+                <Bar label="Scope 1" value={calculateScope1()} />
+                <Bar label="Scope 2" value={calculateScope2()} />
+                <Bar label="Scope 3" value={calculateScope3()} />
               </div>
 
-              <div className="pt-5 sm:pt-6 border-t border-stone-100">
-                <div className="text-stone-500 text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Total Carbon Footprint</div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tighter">
-                    {totalEmissions.toFixed(2)}
-                  </span>
-                  <span className="text-slate-500 font-bold text-sm sm:text-base">tCO2e</span>
-                </div>
+              <div className="mt-8 pt-6 border-t border-emerald-100">
+                <p className="text-xs text-slate-500 uppercase tracking-widest font-bold">
+                  Total Emissions
+                </p>
+                <p className="text-4xl font-black text-slate-900 mt-2">
+                  {total.toFixed(2)} <span className="text-lg text-emerald-700">tCO₂e</span>
+                </p>
               </div>
 
-              <button className="w-full mt-6 sm:mt-8 bg-green-900 text-white font-bold py-3.5 sm:py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-black transition-all active:scale-95 text-sm sm:text-base">
-                <Download size={16} />
-                Download Report
+              <button className="mt-8 w-full bg-emerald-900 text-white font-bold py-4 rounded-2xl hover:bg-black transition flex items-center justify-center gap-2">
+                <Download size={16} /> Export Report
               </button>
 
-              <p className="mt-3 sm:mt-4 text-[9px] sm:text-[10px] text-stone-400 text-center leading-relaxed">
-                Calculations based on standard EPA & GHG Protocol emission factors.
-                Values are indicative for reporting purposes.
-              </p>
             </div>
+
           </div>
 
         </div>
@@ -159,30 +152,44 @@ function CarbonCalculator() {
   );
 }
 
-const InputField = ({ label, name, value, onChange }) => (
-  <div className="flex flex-col gap-1.5 sm:gap-2">
-    <label className="text-[10px] sm:text-xs font-bold text-stone-500 uppercase tracking-wider">{label}</label>
+/* ---------- UI HELPERS ---------- */
+
+const Section = ({ title, children }) => (
+  <div>
+    <h3 className="text-lg font-bold mb-6 text-slate-900 flex items-center gap-2">
+      {title} <Info size={14} className="text-slate-300" />
+    </h3>
+    <div className="grid sm:grid-cols-2 gap-5">
+      {children}
+    </div>
+  </div>
+);
+
+const Input = ({ label, name, onChange }) => (
+  <div>
+    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+      {label}
+    </label>
     <input
       type="number"
       name={name}
-      value={value}
       onChange={onChange}
-      className="bg-stone-50 border border-stone-200 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 focus:ring-2 focus:ring-green-800/20 focus:border-green-800 outline-none transition-all font-bold text-slate-800 text-sm sm:text-base"
-      placeholder="0.00"
+      className="mt-2 w-full px-4 py-3 rounded-xl bg-white/60 border border-emerald-100 focus:ring-2 focus:ring-emerald-300 outline-none font-semibold"
+      placeholder="0"
     />
   </div>
 );
 
-const ResultRow = ({ label, value, color }) => (
+const Bar = ({ label, value }) => (
   <div>
-    <div className="flex justify-between items-end mb-1.5 sm:mb-2">
-      <span className="text-xs sm:text-sm font-bold text-slate-700">{label}</span>
-      <span className="text-xs sm:text-sm font-black text-slate-900">{value.toFixed(2)} t</span>
+    <div className="flex justify-between text-sm font-bold mb-2">
+      <span>{label}</span>
+      <span>{value.toFixed(2)} t</span>
     </div>
-    <div className="w-full h-1.5 sm:h-2 bg-stone-100 rounded-full overflow-hidden">
+    <div className="h-2 bg-emerald-50 rounded-full overflow-hidden">
       <div
-        className={`h-full transition-all duration-1000 ${color}`}
-        style={{ width: `${Math.min(100, (value / 10) * 100)}%` }}
+        className="h-full bg-gradient-to-r from-emerald-500 to-green-700 rounded-full"
+        style={{ width: `${Math.min(100, value * 10)}%` }}
       />
     </div>
   </div>
