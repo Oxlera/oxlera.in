@@ -47,21 +47,10 @@ function Features() {
   ];
 
   return (
-    <section className="relative bg-[#f7fbf8] py-24 sm:py-28 px-5 sm:px-8 overflow-hidden">
+    <section className="relative py-24 sm:py-28 px-5 sm:px-8">
 
-      {/* 🌿 Unified Emerald Ambient System */}
-      <div className="absolute inset-0 pointer-events-none">
-
-        {/* main brand glow */}
-        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-emerald-200/40 blur-[140px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[55%] h-[55%] bg-emerald-300/25 blur-[160px] rounded-full" />
-
-        {/* soft directional wash */}
-        <div className="absolute inset-y-0 left-0 w-[50%] bg-gradient-to-r from-emerald-200/30 via-emerald-100/15 to-transparent" />
-
-        {/* radial depth glow */}
-        <div className="absolute top-0 left-0 w-[60%] h-full bg-[radial-gradient(circle_at_left,#10b98115,transparent_70%)]" />
-      </div>
+      {/* subtle continuity fade (ONLY ONE, not full system) */}
+      <div className="absolute top-0 left-0 right-0 h-[120px] bg-gradient-to-b from-[#f7fbf8] to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
 
@@ -86,37 +75,32 @@ function Features() {
           {features.map((feature, i) => (
             <div
               key={i}
-              className="group relative p-8 rounded-3xl bg-white border border-emerald-100/60
+              className="group relative p-8 rounded-3xl
+                         bg-white/60 backdrop-blur-xl
+                         border border-emerald-100/40
                          shadow-sm hover:shadow-xl hover:shadow-emerald-900/10
-                         transition-all duration-500 overflow-hidden"
+                         transition-all duration-500"
             >
 
-              {/* hover glow */}
-              <div className="absolute inset-0 bg-emerald-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              {/* icon */}
               <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center mb-6
                               group-hover:bg-emerald-200 transition-all duration-300">
                 {feature.icon}
               </div>
 
-              {/* title */}
               <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-900 transition-colors">
                 {feature.title}
               </h3>
 
-              {/* description */}
               <p className="text-slate-600 text-sm leading-relaxed font-medium mb-6">
                 {feature.description}
               </p>
 
-              {/* tags */}
-              <div className="flex flex-wrap gap-2 pt-5 border-t border-emerald-100/50">
+              <div className="flex flex-wrap gap-2 pt-5 border-t border-emerald-100/40">
                 {feature.tags.map((tag) => (
                   <span
                     key={tag}
                     className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider
-                               bg-emerald-50 px-3 py-1 rounded-lg
+                               bg-emerald-50/70 px-3 py-1 rounded-lg
                                group-hover:text-emerald-800 group-hover:bg-emerald-100 transition-all"
                   >
                     {tag}
@@ -126,6 +110,7 @@ function Features() {
 
             </div>
           ))}
+
         </div>
 
       </div>
@@ -133,4 +118,4 @@ function Features() {
   );
 }
 
-export default Features;  
+export default Features;

@@ -9,7 +9,6 @@ import Footer from './components/Footer';
 import About from './components/About';
 import NatureSection from "./components/NatureSection";
 import Blogs from './components/Blogs';
-
 import CarbonCalculator from './components/CarbonCalculator';
 
 function HomePage() {
@@ -29,18 +28,42 @@ function HomePage() {
 function App() {
   return (
     <BrowserRouter>
-      <Header />
 
-      <Routes>
-        {/* Main landing page */}
-        <Route path="/" element={<HomePage />} />
+      {/* 🌍 GLOBAL CANVAS (applies to ALL routes) */}
+      <div className="relative bg-[#f7fbf8] overflow-hidden">
 
-        {/* Carbon calculator page */}
-        <Route path="/carbon-analysis" element={<CarbonCalculator />} />
+        {/* 🌿 SHARED AMBIENT LIGHT SYSTEM */}
+        <div className="fixed inset-0 pointer-events-none z-0">
 
-        {/* Blog page */}
-        <Route path="/blogs" element={<Blogs />} />
-      </Routes>
+          {/* primary glow */}
+          <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-emerald-600/20 blur-[160px] rounded-full" />
+
+          {/* secondary glow */}
+          <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-emerald-700/15 blur-[180px] rounded-full" />
+
+          {/* subtle grid texture */}
+          <div
+            className="absolute inset-0 opacity-[0.06]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, #d1fae5 1px, transparent 1px), linear-gradient(to bottom, #d1fae5 1px, transparent 1px)",
+              backgroundSize: "90px 90px",
+            }}
+          />
+        </div>
+
+        {/* 🌐 ACTUAL APP CONTENT */}
+        <div className="relative z-10">
+          <Header />
+
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/carbon-analysis" element={<CarbonCalculator />} />
+            <Route path="/blogs" element={<Blogs />} />
+          </Routes>
+        </div>
+
+      </div>
     </BrowserRouter>
   );
 }

@@ -2,39 +2,20 @@ import React from "react";
 
 function About() {
   return (
-    <section className="relative overflow-hidden bg-[#f7fbf8] py-24 sm:py-28 md:py-32 px-5 sm:px-8">
+    <section className="relative py-24 sm:py-28 md:py-32 px-5 sm:px-8">
 
-      {/* 🌿 SAME GREEN GLOW SYSTEM AS NATURE SECTION */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
 
-        {/* main glow */}
-        <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] bg-emerald-200/40 blur-[140px] rounded-full animate-pulse" />
-
-        {/* secondary glow */}
-        <div className="absolute bottom-[-20%] left-[-10%] w-[55%] h-[55%] bg-emerald-300/20 blur-[160px] rounded-full" />
-
-        {/* left wash */}
-        <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-emerald-200/40 via-emerald-100/20 to-transparent" />
-
-        {/* radial highlight */}
-        <div className="absolute top-0 left-0 w-[60%] h-full bg-[radial-gradient(circle_at_left,#10b98115,transparent_70%)]" />
-
-        {/* divider */}
-        <div className="absolute left-[55%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-emerald-200/30 to-transparent" />
-      </div>
-
-      <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-
-        {/* LEFT CONTENT */}
+        {/* LEFT */}
         <div className="flex flex-col">
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 leading-[1.05] tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 leading-[1.05] tracking-[-0.03em]">
             Carbon Intelligence
             <br />
             for a Sustainable Future
           </h2>
 
-          <p className="mt-3 text-lg sm:text-xl text-emerald-900 font-medium italic">
+          <p className="mt-4 text-lg sm:text-xl text-emerald-900 font-medium italic">
             Precision meets verified carbon accounting.
           </p>
 
@@ -43,23 +24,27 @@ function About() {
             and transform sustainability data into actionable climate impact.
           </p>
 
-          {/* STATS (same style as NatureSection) */}
+          {/* STATS (MATCH FEATURES CARD SYSTEM) */}
           <div className="mt-10 grid grid-cols-3 gap-4 max-w-md">
 
-            <div className="p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-emerald-100">
-              <p className="text-xl font-bold text-emerald-900">1B+</p>
-              <p className="text-[10px] uppercase text-slate-500 tracking-wider">CO₂ Measured</p>
-            </div>
-
-            <div className="p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-emerald-100">
-              <p className="text-xl font-bold text-emerald-900">100+</p>
-              <p className="text-[10px] uppercase text-slate-500 tracking-wider">Companies</p>
-            </div>
-
-            <div className="p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-emerald-100">
-              <p className="text-xl font-bold text-emerald-900">300+</p>
-              <p className="text-[10px] uppercase text-slate-500 tracking-wider">Projects</p>
-            </div>
+            {[
+              { value: "1B+", label: "CO₂ Measured" },
+              { value: "100+", label: "Companies" },
+              { value: "300+", label: "Projects" },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="p-4 bg-white/60 backdrop-blur-xl rounded-2xl
+                           border border-emerald-100/40 shadow-sm"
+              >
+                <p className="text-xl font-bold text-emerald-900">
+                  {stat.value}
+                </p>
+                <p className="text-[10px] uppercase text-slate-500 tracking-wider">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
 
           </div>
 
@@ -70,7 +55,7 @@ function About() {
               Explore Platform
             </button>
 
-            <button className="px-7 py-3 bg-white border border-emerald-200 text-emerald-900 font-semibold rounded-xl hover:bg-emerald-50 transition-all">
+            <button className="px-7 py-3 bg-white/60 backdrop-blur-xl border border-emerald-100/40 text-emerald-900 font-semibold rounded-xl hover:bg-emerald-50 transition-all">
               Learn More
             </button>
 
@@ -78,12 +63,17 @@ function About() {
 
         </div>
 
-        {/* RIGHT VISUAL (optional abstract carbon block instead of text-heavy grid) */}
+        {/* RIGHT */}
         <div className="relative flex justify-center">
 
-          <div className="absolute w-[500px] h-[500px] bg-emerald-300/25 blur-3xl rounded-full animate-pulse" />
+          {/* keep ONE consistent ambient blob (same system as Features) */}
+          <div className="absolute w-[480px] h-[480px] bg-emerald-300/20 blur-3xl rounded-full" />
 
-          <div className="relative z-10 w-full max-w-[420px] p-10 bg-white/60 backdrop-blur-2xl rounded-3xl border border-emerald-100 shadow-xl">
+          <div className="relative z-10 w-full max-w-[420px] p-10
+                          bg-white/60 backdrop-blur-xl
+                          rounded-3xl border border-emerald-100/40
+                          shadow-sm hover:shadow-xl hover:shadow-emerald-900/10
+                          transition-all duration-500">
 
             <p className="text-sm text-slate-600 leading-relaxed">
               Oxlera builds the infrastructure for carbon credit generation,
