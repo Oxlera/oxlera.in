@@ -37,8 +37,8 @@ function Footer() {
                 India Operations Hub
               </p>
               <div className="space-y-1">
-                <a href="mailto:support@oxlera.com" className="block hover:text-green-400 transition-colors duration-300">
-                  support@oxlera.com
+                <a href="mailto:Business@oxlera.com" className="block hover:text-green-400 transition-colors duration-300">
+                  Business@oxlera.com
                 </a>
                 <p>+91 1800 572 xxxx</p>
               </div>
