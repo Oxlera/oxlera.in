@@ -140,7 +140,9 @@ function Header() {
           <div className="flex items-center gap-4">
             {/* --- In Header.jsx Desktop CTA --- */}
             <a
-              href="mailto:Business@oxlera.com?subject=Inquiry about Oxlera Services&body=Hello Oxlera Team,%0D%0A%0D%0AI would like to learn more about..."
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=Business@oxlera.com&su=Inquiry%20about%20Oxlera%20Services&body=Hello%20Oxlera%20Team,%0A%0AI%20would%20like%20to%20learn%20more%20about..."
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden sm:flex px-6 py-3 text-sm font-bold text-white bg-emerald-900 rounded-full hover:bg-black transition-all shadow-lg"
             >
               Contact Us
@@ -206,7 +208,9 @@ function Header() {
 
             {/* --- In Header.jsx Mobile Menu --- */}
             <a
-              href="mailto:Business@oxlera.com?subject=Inquiry&body=Hello Oxlera Team,"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=Business@oxlera.com&su=Inquiry&body=Hello%20Oxlera%20Team,"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
               className="mt-2 px-5 py-3 text-center text-white bg-emerald-900 rounded-xl font-semibold"
             >
