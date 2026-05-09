@@ -4,6 +4,13 @@ import logo from './../assets/logo.png';
 function Footer() {
   const year = new Date().getFullYear();
 
+  // Helper for generating the mailto link
+  const contactEmail = "Business@oxlera.com";
+  const emailSubject = encodeURIComponent("Inquiry regarding Oxlera Carbon Intelligence");
+  const emailBody = encodeURIComponent("Hello Oxlera Team,\n\nI am interested in learning more about your platform and solutions. Please get in touch with me.\n\nRegards,");
+  
+  const mailtoLink = `mailto:${contactEmail}?subject=${emailSubject}&body=${emailBody}`;
+
   const platformLinks = [
     'Carbon Calculator', 'Emission Tracking', 'Scope 1–3 Analysis',
     'Carbon Dashboard', 'ESG Reporting Tools', 'Carbon Credit Registry'
@@ -37,8 +44,9 @@ function Footer() {
                 India Operations Hub
               </p>
               <div className="space-y-1">
-                <a href="mailto:Business@oxlera.com" className="block hover:text-green-400 transition-colors duration-300">
-                  Business@oxlera.com
+                {/* Updated Email Link */}
+                <a href={mailtoLink} className="block hover:text-green-400 transition-colors duration-300">
+                  {contactEmail}
                 </a>
                 <p>+91 1800 572 xxxx</p>
               </div>
@@ -116,9 +124,9 @@ function Footer() {
             ))}
           </div>
 
-          {/* Chat CTA */}
+          {/* Updated Chat CTA to Mailto */}
           <a
-            href="#contact"
+            href={mailtoLink}
             className="group flex items-center gap-2 sm:gap-2.5 bg-white/5 border border-white/8 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl hover:bg-white/8 hover:border-white/12 transition-all duration-300"
           >
             <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>

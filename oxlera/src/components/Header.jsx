@@ -51,16 +51,14 @@ function Header() {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-500 ${
-        visible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-500 ${visible ? "translate-y-0" : "-translate-y-full"
+        }`}
     >
       <header
-        className={`transition-all duration-500 ${
-          scrolled
-      ? "bg-white/70 backdrop-blur-xl py-3 shadow-[0_10px_40px_rgba(0,0,0,0.06)]"
-      : "bg-transparent py-6"
-        }`}
+        className={`transition-all duration-500 ${scrolled
+          ? "bg-white/70 backdrop-blur-xl py-3 shadow-[0_10px_40px_rgba(0,0,0,0.06)]"
+          : "bg-transparent py-6"
+          }`}
       >
         <div className="max-w-[1400px] mx-auto flex items-center justify-between px-5 sm:px-8 md:px-10">
 
@@ -140,15 +138,13 @@ function Header() {
 
           {/* CTA */}
           <div className="flex items-center gap-4">
-
-            <Link
-              to="/contact"
-              className="hidden sm:flex px-6 py-3 text-sm font-bold
-                         text-white bg-emerald-900 rounded-full
-                         hover:bg-black transition-all shadow-lg"
+            {/* --- In Header.jsx Desktop CTA --- */}
+            <a
+              href="mailto:Business@oxlera.com?subject=Inquiry about Oxlera Services&body=Hello Oxlera Team,%0D%0A%0D%0AI would like to learn more about..."
+              className="hidden sm:flex px-6 py-3 text-sm font-bold text-white bg-emerald-900 rounded-full hover:bg-black transition-all shadow-lg"
             >
               Contact Us
-            </Link>
+            </a>
 
             {/* MOBILE */}
             <button
@@ -166,59 +162,60 @@ function Header() {
         </div>
       </header>
       {/* MOBILE MENU */}
-{isOpen && (
-  <div className="md:hidden absolute top-full left-0 right-0 bg-white/90 backdrop-blur-xl border-b border-emerald-100 shadow-lg">
-    <div className="flex flex-col px-6 py-4 gap-2">
+      {isOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white/90 backdrop-blur-xl border-b border-emerald-100 shadow-lg">
+          <div className="flex flex-col px-6 py-4 gap-2">
 
-      <button
-        onClick={() => {
-          goToSection("features");
-          setIsOpen(false);
-        }}
-        className="py-3 text-left font-medium text-slate-700"
-      >
-        Features
-      </button>
+            <button
+              onClick={() => {
+                goToSection("features");
+                setIsOpen(false);
+              }}
+              className="py-3 text-left font-medium text-slate-700"
+            >
+              Features
+            </button>
 
-      {serviceItems.map((item) => (
-        <button
-          key={item.name}
-          onClick={() => handleServiceClick(item)}
-          className="py-3 text-left font-medium text-slate-700"
-        >
-          {item.name}
-        </button>
-      ))}
+            {serviceItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => handleServiceClick(item)}
+                className="py-3 text-left font-medium text-slate-700"
+              >
+                {item.name}
+              </button>
+            ))}
 
-      <button
-        onClick={() => {
-          goToSection("metrics");
-          setIsOpen(false);
-        }}
-        className="py-3 text-left font-medium text-slate-700"
-      >
-        Reporting
-      </button>
+            <button
+              onClick={() => {
+                goToSection("metrics");
+                setIsOpen(false);
+              }}
+              className="py-3 text-left font-medium text-slate-700"
+            >
+              Reporting
+            </button>
 
-      <Link
-        to="/blogs"
-        onClick={() => setIsOpen(false)}
-        className="py-3 text-left font-medium text-slate-700"
-      >
-        Blogs
-      </Link>
+            <Link
+              to="/blogs"
+              onClick={() => setIsOpen(false)}
+              className="py-3 text-left font-medium text-slate-700"
+            >
+              Blogs
+            </Link>
 
-      <Link
-        to="/contact"
-        onClick={() => setIsOpen(false)}
-        className="mt-2 px-5 py-3 text-center text-white bg-emerald-900 rounded-xl font-semibold"
-      >
-        Contact Us
-      </Link>
+            {/* --- In Header.jsx Mobile Menu --- */}
+            <a
+              href="mailto:Business@oxlera.com?subject=Inquiry&body=Hello Oxlera Team,"
+              onClick={() => setIsOpen(false)}
+              className="mt-2 px-5 py-3 text-center text-white bg-emerald-900 rounded-xl font-semibold"
+            >
+              Contact Us
+            </a>
 
-    </div>
-  </div>
-)}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
