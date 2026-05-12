@@ -4,7 +4,11 @@ import logo from "./../assets/logo.png";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [openMobileMenu, setOpenMobileMenu] = useState(null);
+  const [openMobileMenu, setOpenMobileMenu] = useState({
+    section: null,
+    child: null,
+    subchild: null,
+  });
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -301,23 +305,29 @@ function Header() {
 
               <button
                 onClick={() =>
-                  setOpenMobileMenu(
-                    openMobileMenu === "whatwedo" ? null : "whatwedo"
-                  )
+                  setOpenMobileMenu((prev) => ({
+                    ...prev,
+                    section:
+                      prev.section === "whatwedo"
+                        ? null
+                        : "whatwedo",
+                  }))
                 }
                 className="py-3 flex items-center justify-between font-semibold text-slate-800"
               >
                 <span>What We Do</span>
 
                 <span
-                  className={`transition-transform duration-300 ${openMobileMenu === "whatwedo" ? "rotate-180" : ""
+                  className={`transition-transform duration-300 ${openMobileMenu.section === "whatwedo"
+                      ? "rotate-180"
+                      : ""
                     }`}
                 >
                   ▾
                 </span>
               </button>
 
-              {openMobileMenu === "whatwedo" && (
+              {openMobileMenu.section === "whatwedo" && (
                 <div className="flex flex-col pb-2">
 
                   {whatWeDoItems.map((item) => (
@@ -332,39 +342,95 @@ function Header() {
                         </button>
                       ) : (
                         <>
+                          {/* LEVEL 1 */}
                           <button
                             onClick={() =>
-                              setOpenMobileMenu(
-                                openMobileMenu === item.name
-                                  ? "whatwedo"
-                                  : item.name
-                              )
+                              setOpenMobileMenu((prev) => ({
+                                ...prev,
+                                child:
+                                  prev.child === item.name
+                                    ? null
+                                    : item.name,
+                              }))
                             }
                             className="pl-4 py-2 text-sm font-medium text-left text-slate-700 flex items-center justify-between"
                           >
                             <span>{item.name}</span>
 
                             <span
-                              className={`transition-transform duration-300 ${openMobileMenu === item.name
-                                ? "rotate-90"
-                                : ""
+                              className={`transition-transform duration-300 ${openMobileMenu.child === item.name
+                                  ? "rotate-90"
+                                  : ""
                                 }`}
                             >
                               ›
                             </span>
                           </button>
 
-                          {openMobileMenu === item.name && (
+                          {openMobileMenu.child === item.name && (
                             <div className="flex flex-col pl-4">
 
                               {item.children.map((child) => (
-                                <button
+                                <div
                                   key={child.name}
-                                  onClick={() => handleServiceClick(child)}
-                                  className="pl-4 py-2 text-sm text-left text-slate-500 hover:text-emerald-700 transition-all"
+                                  className="flex flex-col"
                                 >
-                                  {child.name}
-                                </button>
+
+                                  {!child.children ? (
+                                    <button
+                                      onClick={() => handleServiceClick(child)}
+                                      className="pl-4 py-2 text-sm text-left text-slate-500 hover:text-emerald-700 transition-all"
+                                    >
+                                      {child.name}
+                                    </button>
+                                  ) : (
+                                    <>
+                                      {/* LEVEL 2 */}
+                                      <button
+                                        onClick={() =>
+                                          setOpenMobileMenu((prev) => ({
+                                            ...prev,
+                                            subchild:
+                                              prev.subchild === child.name
+                                                ? null
+                                                : child.name,
+                                          }))
+                                        }
+                                        className="pl-4 py-2 text-sm text-left text-slate-600 flex items-center justify-between"
+                                      >
+                                        <span>{child.name}</span>
+
+                                        <span
+                                          className={`transition-transform duration-300 ${openMobileMenu.subchild === child.name
+                                              ? "rotate-90"
+                                              : ""
+                                            }`}
+                                        >
+                                          ›
+                                        </span>
+                                      </button>
+
+                                      {openMobileMenu.subchild === child.name && (
+                                        <div className="flex flex-col pl-4">
+
+                                          {child.children.map((subchild) => (
+                                            <button
+                                              key={subchild.name}
+                                              onClick={() =>
+                                                handleServiceClick(subchild)
+                                              }
+                                              className="pl-4 py-2 text-sm text-left text-slate-500 hover:text-emerald-700 transition-all"
+                                            >
+                                              {subchild.name}
+                                            </button>
+                                          ))}
+
+                                        </div>
+                                      )}
+                                    </>
+                                  )}
+
+                                </div>
                               ))}
 
                             </div>
@@ -408,8 +474,8 @@ function Header() {
 
                 <span
                   className={`transition-transform duration-300 ${openMobileMenu === "publications"
-                      ? "rotate-180"
-                      : ""
+                    ? "rotate-180"
+                    : ""
                     }`}
                 >
                   ▾
