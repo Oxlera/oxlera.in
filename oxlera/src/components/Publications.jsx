@@ -1,6 +1,6 @@
 import React from "react";
 
-function Blogs() {
+function Publications() {
   const posts = [
     {
       title: "Understanding Carbon Accounting in 2026",
@@ -25,11 +25,10 @@ function Blogs() {
   return (
     <section className="relative min-h-screen bg-[#fbfdfc] pt-32 pb-20 px-6 overflow-hidden">
 
-      {/* Background */}
+      {/* Background (same style as Hero) */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-emerald-100/40 blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-100/30 blur-[120px]" />
-
         <div
           className="absolute inset-0 opacity-[0.08]"
           style={{
@@ -46,15 +45,14 @@ function Blogs() {
         {/* Header */}
         <div className="mb-14">
           <h1 className="text-5xl md:text-6xl font-bold text-slate-950 tracking-tight">
-            Latest{" "}
+            Insights &{" "}
             <span className="text-emerald-700 italic font-light">
-              Blogs
+              Articles
             </span>
           </h1>
-
           <p className="mt-5 text-slate-600 max-w-xl">
-            Insights, research, and perspectives on sustainability,
-            carbon intelligence, ESG reporting, and climate innovation.
+            Explore sustainability, carbon intelligence, ESG reporting, and the
+            future of climate technology.
           </p>
         </div>
 
@@ -80,7 +78,7 @@ function Blogs() {
                 {post.description}
               </p>
 
-              {/* Read More */}
+              {/* Read more */}
               <button className="mt-6 text-sm font-bold text-emerald-700 hover:underline">
                 Read more →
               </button>
@@ -92,4 +90,4 @@ function Blogs() {
   );
 }
 
-export default Blogs;
+export default Publications;

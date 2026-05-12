@@ -8,7 +8,7 @@ function Footer() {
   const contactEmail = "Business@oxlera.com";
   const emailSubject = encodeURIComponent("Inquiry regarding Oxlera Carbon Intelligence");
   const emailBody = encodeURIComponent("Hello Oxlera Team,\n\nI am interested in learning more about your platform and solutions. Please get in touch with me.\n\nRegards,");
-  
+
   const mailtoLink = `mailto:${contactEmail}?subject=${emailSubject}&body=${emailBody}`;
 
   const platformLinks = [
@@ -87,7 +87,7 @@ function Footer() {
               Receive insights on <span className="text-white font-semibold">carbon markets, ESG frameworks, and net-zero developments</span>
             </p>
 
-            <div className="space-y-2 sm:space-y-2.5">
+            <div className="space-y-4 sm:space-y-5">
               <label className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-gray-600">
                 Subscribe to Updates
               </label>
@@ -98,7 +98,7 @@ function Footer() {
                   placeholder="Enter Your Email"
                   className="bg-transparent border-none focus:outline-none focus:ring-0 focus:shadow-none text-xs sm:text-sm pl-2.5 sm:pl-3 w-full text-gray-300 placeholder:text-gray-600"
                 />
-                <button className="bg-green-700 hover:bg-green-600 text-white px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold transition-all duration-300 whitespace-nowrap active:scale-[0.97]">
+                <button className="bg-green-700 hover:bg-green-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-[11px] font-bold transition-all duration-300 whitespace-nowrap active:scale-[0.97]">
                   Subscribe
                 </button>
               </div>
@@ -117,22 +117,12 @@ function Footer() {
 
           {/* Socials */}
           <div className="flex items-center gap-4 sm:gap-6">
-            {['LinkedIn', 'X', 'Instagram', 'GitHub'].map((social) => (
+            {['LinkedIn', 'X', 'Instagram'].map((social) => (
               <a key={social} href="#" className="hover:text-white transition-colors duration-300 font-medium">
                 {social}
               </a>
             ))}
           </div>
-
-          {/* Updated Chat CTA to Mailto */}
-          <a
-            href={mailtoLink}
-            className="group flex items-center gap-2 sm:gap-2.5 bg-white/5 border border-white/8 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl hover:bg-white/8 hover:border-white/12 transition-all duration-300"
-          >
-            <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-            <span className="text-white/80 font-bold text-[10px] sm:text-xs group-hover:text-white transition-colors">Speak with Our Team</span>
-          </a>
-
         </div>
 
       </div>

@@ -1,24 +1,27 @@
 import React from "react";
 
-function Blogs() {
-  const posts = [
+function CaseStudies() {
+  const studies = [
     {
-      title: "Understanding Carbon Accounting in 2026",
+      company: "GreenGrid Energy",
+      title: "Reducing Enterprise Emissions by 38%",
       description:
-        "A deep dive into Scope 1, 2, and 3 emissions and how enterprises can track them in real time.",
-      tag: "Carbon",
+        "How a renewable energy company leveraged AI-driven carbon tracking to optimize operations and reduce emissions across multiple facilities.",
+      category: "Energy",
     },
     {
-      title: "Why ESG Reporting is Becoming Mandatory",
+      company: "EcoChain Logistics",
+      title: "Real-Time Supply Chain Carbon Visibility",
       description:
-        "Regulations are tightening globally. Here's what businesses need to prepare for.",
-      tag: "ESG",
+        "Building a centralized sustainability dashboard to monitor Scope 3 emissions across international logistics partners.",
+      category: "Logistics",
     },
     {
-      title: "The Future of Carbon Markets",
+      company: "Nova Manufacturing",
+      title: "Automating ESG Reporting Pipelines",
       description:
-        "Tokenization of carbon credits and how blockchain is reshaping sustainability finance.",
-      tag: "Markets",
+        "A digital transformation initiative that streamlined ESG compliance and reduced reporting time by 70%.",
+      category: "Manufacturing",
     },
   ];
 
@@ -46,43 +49,48 @@ function Blogs() {
         {/* Header */}
         <div className="mb-14">
           <h1 className="text-5xl md:text-6xl font-bold text-slate-950 tracking-tight">
-            Latest{" "}
+            Success{" "}
             <span className="text-emerald-700 italic font-light">
-              Blogs
+              Stories
             </span>
           </h1>
 
           <p className="mt-5 text-slate-600 max-w-xl">
-            Insights, research, and perspectives on sustainability,
-            carbon intelligence, ESG reporting, and climate innovation.
+            Explore how organizations are using carbon intelligence,
+            automation, and ESG analytics to drive measurable sustainability impact.
           </p>
         </div>
 
-        {/* Blog Grid */}
+        {/* Grid */}
         <div className="grid md:grid-cols-3 gap-6">
-          {posts.map((post, i) => (
+          {studies.map((study, i) => (
             <div
               key={i}
               className="group bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
-              {/* Tag */}
+              {/* Category */}
               <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
-                {post.tag}
+                {study.category}
               </span>
 
+              {/* Company */}
+              <p className="mt-5 text-sm font-semibold text-slate-500">
+                {study.company}
+              </p>
+
               {/* Title */}
-              <h2 className="mt-4 text-xl font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                {post.title}
+              <h2 className="mt-2 text-xl font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">
+                {study.title}
               </h2>
 
               {/* Description */}
               <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-                {post.description}
+                {study.description}
               </p>
 
-              {/* Read More */}
+              {/* CTA */}
               <button className="mt-6 text-sm font-bold text-emerald-700 hover:underline">
-                Read more →
+                View case study →
               </button>
             </div>
           ))}
@@ -92,4 +100,4 @@ function Blogs() {
   );
 }
 
-export default Blogs;
+export default CaseStudies;

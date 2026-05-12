@@ -8,8 +8,13 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import About from './components/About';
 import NatureSection from "./components/NatureSection";
-import Blogs from './components/Blogs';
 import CarbonCalculator from './components/CarbonCalculator';
+import ResearchPapers from './components/ResearchPapers';
+import CaseStudies from './components/CaseStudies';
+import Blogs from './components/Blogs';
+import Careers from "./components/Careers";
+
+
 
 function HomePage() {
   return (
@@ -58,8 +63,23 @@ function App() {
 
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/carbon-analysis" element={<CarbonCalculator />} />
-            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/carbon-emission-calculator" element={<CarbonCalculator />} />
+            <Route
+              path="/publications/research-papers"
+              element={<ResearchPapers />}
+            />
+
+            <Route
+              path="/publications/case-studies"
+              element={<CaseStudies />}
+            />
+
+            <Route
+              path="/publications/blogs"
+              element={<Blogs />}
+            />
+
+            <Route path="/careers" element={<Careers />} />
           </Routes>
         </div>
 
