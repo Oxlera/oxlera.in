@@ -4,6 +4,7 @@ import logo from "./../assets/logo.png";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [openMobileMenu, setOpenMobileMenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -88,16 +89,14 @@ function Header() {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-500 ${
-        visible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-500 ${visible ? "translate-y-0" : "-translate-y-full"
+        }`}
     >
       <header
-        className={`transition-all duration-500 ${
-          scrolled
-            ? "bg-white/70 backdrop-blur-xl py-3 shadow-[0_10px_40px_rgba(0,0,0,0.06)]"
-            : "bg-transparent py-6"
-        }`}
+        className={`transition-all duration-500 ${scrolled
+          ? "bg-white/70 backdrop-blur-xl py-3 shadow-[0_10px_40px_rgba(0,0,0,0.06)]"
+          : "bg-transparent py-6"
+          }`}
       >
         <div className="max-w-[1400px] mx-auto flex items-center justify-between px-5 sm:px-8 md:px-10">
 
@@ -262,21 +261,18 @@ function Header() {
               className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1 rounded-full bg-white/60 backdrop-blur-xl border border-emerald-100"
             >
               <span
-                className={`w-5 h-[2px] bg-slate-900 transition-all ${
-                  isOpen ? "rotate-45 translate-y-1.5" : ""
-                }`}
+                className={`w-5 h-[2px] bg-slate-900 transition-all ${isOpen ? "rotate-45 translate-y-1.5" : ""
+                  }`}
               />
 
               <span
-                className={`w-5 h-[2px] bg-slate-900 transition-all ${
-                  isOpen ? "opacity-0" : ""
-                }`}
+                className={`w-5 h-[2px] bg-slate-900 transition-all ${isOpen ? "opacity-0" : ""
+                  }`}
               />
 
               <span
-                className={`w-5 h-[2px] bg-slate-900 transition-all ${
-                  isOpen ? "-rotate-45 -translate-y-1.5" : ""
-                }`}
+                className={`w-5 h-[2px] bg-slate-900 transition-all ${isOpen ? "-rotate-45 -translate-y-1.5" : ""
+                  }`}
               />
             </button>
 
@@ -301,15 +297,88 @@ function Header() {
             </button>
 
             {/* What We Do */}
-            {whatWeDoItems.map((item) => (
+            <div className="flex flex-col">
+
               <button
-                key={item.name}
-                onClick={() => handleServiceClick(item)}
-                className="py-3 text-left font-medium text-slate-700"
+                onClick={() =>
+                  setOpenMobileMenu(
+                    openMobileMenu === "whatwedo" ? null : "whatwedo"
+                  )
+                }
+                className="py-3 flex items-center justify-between font-semibold text-slate-800"
               >
-                {item.name}
+                <span>What We Do</span>
+
+                <span
+                  className={`transition-transform duration-300 ${openMobileMenu === "whatwedo" ? "rotate-180" : ""
+                    }`}
+                >
+                  ▾
+                </span>
               </button>
-            ))}
+
+              {openMobileMenu === "whatwedo" && (
+                <div className="flex flex-col pb-2">
+
+                  {whatWeDoItems.map((item) => (
+                    <div key={item.name} className="flex flex-col">
+
+                      {!item.children ? (
+                        <button
+                          onClick={() => handleServiceClick(item)}
+                          className="pl-4 py-2 text-sm text-left text-slate-600"
+                        >
+                          {item.name}
+                        </button>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() =>
+                              setOpenMobileMenu(
+                                openMobileMenu === item.name
+                                  ? "whatwedo"
+                                  : item.name
+                              )
+                            }
+                            className="pl-4 py-2 text-sm font-medium text-left text-slate-700 flex items-center justify-between"
+                          >
+                            <span>{item.name}</span>
+
+                            <span
+                              className={`transition-transform duration-300 ${openMobileMenu === item.name
+                                ? "rotate-90"
+                                : ""
+                                }`}
+                            >
+                              ›
+                            </span>
+                          </button>
+
+                          {openMobileMenu === item.name && (
+                            <div className="flex flex-col pl-4">
+
+                              {item.children.map((child) => (
+                                <button
+                                  key={child.name}
+                                  onClick={() => handleServiceClick(child)}
+                                  className="pl-4 py-2 text-sm text-left text-slate-500 hover:text-emerald-700 transition-all"
+                                >
+                                  {child.name}
+                                </button>
+                              ))}
+
+                            </div>
+                          )}
+                        </>
+                      )}
+
+                    </div>
+                  ))}
+
+                </div>
+              )}
+
+            </div>
 
             {/* Reporting */}
             <button
@@ -325,33 +394,57 @@ function Header() {
             {/* Publications */}
             <div className="flex flex-col">
 
-              <span className="py-3 font-semibold text-slate-800">
-                Publications
-              </span>
-
-              <Link
-                to="/publications/research-papers"
-                onClick={() => setIsOpen(false)}
-                className="pl-4 py-2 text-sm text-slate-600"
+              <button
+                onClick={() =>
+                  setOpenMobileMenu(
+                    openMobileMenu === "publications"
+                      ? null
+                      : "publications"
+                  )
+                }
+                className="py-3 flex items-center justify-between font-semibold text-slate-800"
               >
-                Research Papers
-              </Link>
+                <span>Publications</span>
 
-              <Link
-                to="/publications/case-studies"
-                onClick={() => setIsOpen(false)}
-                className="pl-4 py-2 text-sm text-slate-600"
-              >
-                Case Studies
-              </Link>
+                <span
+                  className={`transition-transform duration-300 ${openMobileMenu === "publications"
+                      ? "rotate-180"
+                      : ""
+                    }`}
+                >
+                  ▾
+                </span>
+              </button>
 
-              <Link
-                to="/publications/blogs"
-                onClick={() => setIsOpen(false)}
-                className="pl-4 py-2 text-sm text-slate-600"
-              >
-                Blogs
-              </Link>
+              {openMobileMenu === "publications" && (
+                <div className="flex flex-col pb-2">
+
+                  <Link
+                    to="/publications/research-papers"
+                    onClick={() => setIsOpen(false)}
+                    className="pl-4 py-2 text-sm text-slate-600 hover:text-emerald-700 transition-all"
+                  >
+                    Research Papers
+                  </Link>
+
+                  <Link
+                    to="/publications/case-studies"
+                    onClick={() => setIsOpen(false)}
+                    className="pl-4 py-2 text-sm text-slate-600 hover:text-emerald-700 transition-all"
+                  >
+                    Case Studies
+                  </Link>
+
+                  <Link
+                    to="/publications/blogs"
+                    onClick={() => setIsOpen(false)}
+                    className="pl-4 py-2 text-sm text-slate-600 hover:text-emerald-700 transition-all"
+                  >
+                    Blogs
+                  </Link>
+
+                </div>
+              )}
 
             </div>
 
