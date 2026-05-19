@@ -219,13 +219,6 @@ function Header() {
                   </Link>
 
                   <Link
-                    to="/publications/case-studies"
-                    className="block px-4 py-3 text-sm font-medium text-slate-600 rounded-xl hover:bg-emerald-50 hover:text-emerald-900 transition-all"
-                  >
-                    Case Studies
-                  </Link>
-
-                  <Link
                     to="/publications/blogs"
                     className="block px-4 py-3 text-sm font-medium text-slate-600 rounded-xl hover:bg-emerald-50 hover:text-emerald-900 transition-all"
                   >
