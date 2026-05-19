@@ -492,15 +492,6 @@ function Header() {
                   >
                     Research Papers
                   </Link>
-
-                  <Link
-                    to="/publications/case-studies"
-                    onClick={() => setIsOpen(false)}
-                    className="pl-4 py-2 text-sm text-slate-600 hover:text-emerald-700 transition-all"
-                  >
-                    Case Studies
-                  </Link>
-
                   <Link
                     to="/publications/blogs"
                     onClick={() => setIsOpen(false)}

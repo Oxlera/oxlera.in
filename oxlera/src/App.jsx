@@ -10,7 +10,7 @@ import About from './components/About';
 import NatureSection from "./components/NatureSection";
 import CarbonCalculator from './components/CarbonCalculator';
 import ResearchPapers from './components/ResearchPapers';
-import CaseStudies from './components/CaseStudies';
+// import CaseStudies from './components/CaseStudies';
 import Blogs from './components/Blogs';
 import Careers from "./components/Careers";
 
@@ -68,12 +68,6 @@ function App() {
               path="/publications/research-papers"
               element={<ResearchPapers />}
             />
-
-            <Route
-              path="/publications/case-studies"
-              element={<CaseStudies />}
-            />
-
             <Route
               path="/publications/blogs"
               element={<Blogs />}
