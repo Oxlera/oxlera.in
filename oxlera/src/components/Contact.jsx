@@ -1,53 +1,155 @@
-import React from 'react';
+import React, { useState } from "react";
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = () => {
+    const subject = encodeURIComponent(
+      `Consultation Request from ${formData.name}`
+    );
+
+    const body = encodeURIComponent(
+      `Hello Oxlera Team,
+
+Full Name: ${formData.name}
+
+Business Email: ${formData.email}
+
+Company Name: ${formData.company}
+
+Requirements:
+${formData.message}`
+    );
+
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=Business@oxlera.com&su=${subject}&body=${body}`,
+      "_blank"
+    );
+  };
+
   return (
-    <section id="contact" className="max-w-[1100px] mx-auto py-24 px-6">
-      <div className="relative overflow-hidden bg-green-900 rounded-[2.5rem] px-8 py-16 md:py-24 text-center">
-        
-        {/* Abstract Background Decoration */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-green-800 rounded-full blur-3xl opacity-50"></div>
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-green-700 rounded-full blur-3xl opacity-30"></div>
+    <section
+      id="contact"
+      className="relative bg-[#f4f8f5] py-24 px-5 sm:px-8 overflow-hidden"
+    >
+      {/* Background Blobs */}
+      <div className="absolute top-[-10%] right-[-10%] w-[400px] h-[400px] bg-emerald-200/30 blur-[120px] rounded-full" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[350px] h-[350px] bg-green-200/25 blur-[120px] rounded-full" />
+
+      <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+        {/* LEFT: TEXT */}
+        <div>
+
+          {/* Heading */}
+          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
+            Start your{" "}
+            <span className="text-emerald-800 font-serif italic font-normal">
+              carbon transformation
+            </span>
+          </h2>
+
+          {/* Description */}
+          <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed max-w-md">
+            Talk to our team to design a tailored carbon accounting,
+            ESG reporting, and emissions reduction system for your
+            organisation.
+          </p>
+
+          {/* Info Cards */}
+          <div className="mt-10 space-y-4">
+
+            <div className="flex items-center gap-3 text-slate-600">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-sm font-medium">
+                Response within 24 hours
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3 text-slate-600">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-sm font-medium">
+                Scope 1–3 carbon coverage
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3 text-slate-600">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-sm font-medium">
+                ESG & compliance ready reporting
+              </span>
+            </div>
+
+          </div>
         </div>
 
-        <div className="relative z-10">
-          {/* Subtle Label */}
-          <span className="text-green-300 font-bold tracking-widest uppercase text-xs">
-            Start a conversation
-          </span>
+        {/* RIGHT: FORM CARD */}
+        <div className="bg-white/80 backdrop-blur-xl border border-green-100 shadow-xl rounded-3xl p-6 sm:p-10">
 
-          <h2 className="mt-4 text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-            Let’s grow <span className="text-green-400 font-serif italic font-normal">together.</span>
-          </h2>
-          
-          <p className="mt-6 text-lg md:text-xl text-green-100/80 max-w-xl mx-auto font-medium leading-relaxed">
-            Ready to transform your workspace? Reach out today for a consultation or a custom quote.
-          </p>
+          <div className="space-y-5">
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="mailto:contact@oxlera.in"
-              className="group flex items-center gap-3 px-8 py-4 bg-white text-green-900 font-bold rounded-2xl hover:bg-green-50 transition-all duration-300 shadow-xl shadow-black/10 active:scale-95"
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 outline-none text-sm"
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Business Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 outline-none text-sm"
+            />
+
+            <input
+              type="text"
+              name="company"
+              placeholder="Company Name"
+              value={formData.company}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 outline-none text-sm"
+            />
+
+            <textarea
+              rows="4"
+              name="message"
+              placeholder="Tell us about your requirements..."
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 outline-none text-sm resize-none"
+            />
+
+            <button
+              onClick={handleSubmit}
+              className="w-full py-3.5 bg-emerald-900 text-white font-bold rounded-xl hover:bg-slate-900 transition-all shadow-lg"
             >
-              <span>Email our team</span>
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                strokeWidth={2.5} 
-                stroke="currentColor" 
-                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
+              Request Consultation →
+            </button>
+
           </div>
 
-          {/* Quick response badge */}
-          <p className="mt-8 text-green-300/60 text-sm font-medium">
-            Typically responds within 24 hours
+          {/* Footer note */}
+          <p className="text-xs text-slate-400 text-center mt-5">
+            We never share your information. Secure & confidential.
           </p>
+
         </div>
       </div>
     </section>
