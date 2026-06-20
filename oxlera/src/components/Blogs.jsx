@@ -1,51 +1,62 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Blogs() {
-  const posts = [
-    {
-      title: "Understanding Carbon Accounting in 2026",
-      description:
-        "A deep dive into Scope 1, 2, and 3 emissions and how enterprises can track them in real time.",
-      tag: "Carbon",
-    },
-    {
-      title: "Why ESG Reporting is Becoming Mandatory",
-      description:
-        "Regulations are tightening globally. Here's what businesses need to prepare for.",
-      tag: "ESG",
-    },
-    {
-      title: "The Future of Carbon Markets",
-      description:
-        "Tokenization of carbon credits and how blockchain is reshaping sustainability finance.",
-      tag: "Markets",
-    },
-  ];
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchBlogs() {
+      try {
+        const response = await fetch(
+          `https://cdn.contentful.com/spaces/${import.meta.env.VITE_CONTENTFUL_SPACE_ID}/environments/master/entries`,
+          {
+            headers: {
+              Authorization: `Bearer ${import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        const formattedPosts = data.items.map((item) => ({
+          id: item.sys.id,
+          title: item.fields.title || "",
+          excerpt: item.fields.excerpt || "",
+          category: item.fields.category || "",
+          slug: item.fields.slug || "",
+          author: item.fields.author || "",
+          publishDate: item.fields.publishDate || "",
+          tags: item.fields.tags
+            ? item.fields.tags.split(",").map((tag) => tag.trim())
+            : [],
+        }));
+
+        setPosts(formattedPosts);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchBlogs();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading blogs...
+      </div>
+    );
+  }
 
   return (
-    <section className="relative min-h-screen bg-[#fbfdfc] pt-32 pb-20 px-6 overflow-hidden">
+    <section className="relative min-h-screen bg-[#fbfdfc] pt-32 pb-20 px-6">
+      <div className="max-w-6xl mx-auto">
 
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-emerald-100/40 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-100/30 blur-[120px]" />
-
-        <div
-          className="absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="relative max-w-6xl mx-auto">
-
-        {/* Header */}
         <div className="mb-14">
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-950 tracking-tight">
+          <h1 className="text-5xl md:text-6xl font-bold">
             Latest{" "}
             <span className="text-emerald-700 italic font-light">
               Blogs
@@ -53,37 +64,51 @@ function Blogs() {
           </h1>
 
           <p className="mt-5 text-slate-600 max-w-xl">
-            Insights, research, and perspectives on sustainability,
-            carbon intelligence, ESG reporting, and climate innovation.
+            Insights on ESG, sustainability, and climate innovation.
           </p>
         </div>
 
-        {/* Blog Grid */}
         <div className="grid md:grid-cols-3 gap-6">
-          {posts.map((post, i) => (
+          {posts.map((post) => (
             <div
-              key={i}
-              className="group bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              key={post.id}
+              className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-lg transition"
             >
-              {/* Tag */}
               <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
-                {post.tag}
+                {post.category}
               </span>
 
-              {/* Title */}
-              <h2 className="mt-4 text-xl font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">
+              <h2 className="mt-4 text-xl font-bold">
                 {post.title}
               </h2>
 
-              {/* Description */}
-              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-                {post.description}
+              <p className="mt-3 text-sm text-slate-600">
+                {post.excerpt}
               </p>
 
-              {/* Read More */}
-              <button className="mt-6 text-sm font-bold text-emerald-700 hover:underline">
+              <div className="mt-4 text-xs text-gray-500">
+                {post.author} •{" "}
+                {post.publishDate &&
+                  new Date(post.publishDate).toLocaleDateString()}
+              </div>
+
+              <div className="flex gap-2 flex-wrap mt-4">
+                {post.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="text-xs px-2 py-1 bg-gray-100 rounded-md"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+
+              <Link
+                to={`/blogs/${post.slug}`}
+                className="mt-6 inline-block text-sm font-bold text-emerald-700 hover:underline"
+              >
                 Read more →
-              </button>
+              </Link>
             </div>
           ))}
         </div>

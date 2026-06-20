@@ -13,6 +13,7 @@ import ResearchPapers from './components/ResearchPapers';
 // import CaseStudies from './components/CaseStudies';
 import Blogs from './components/Blogs';
 import Careers from "./components/Careers";
+import BlogDetails from "./components/BlogDetails";
 
 
 
@@ -72,6 +73,8 @@ function App() {
               path="/publications/blogs"
               element={<Blogs />}
             />
+
+            <Route path="/blogs/:slug" element={<BlogDetails />} />
 
             <Route path="/careers" element={<Careers />} />
           </Routes>
