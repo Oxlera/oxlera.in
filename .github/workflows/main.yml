@@ -20,18 +20,21 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
+          cache-dependency-path: ./oxlera/package-lock.json
 
       - run: npm install
+        working-directory: ./oxlera
 
       - run: npm run build
+        working-directory: ./oxlera
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./oxlera/dist
 
   deploy:
     needs: build
