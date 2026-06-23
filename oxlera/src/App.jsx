@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -26,8 +27,38 @@ function HomePage() {
       <Divisions />
       <NatureSection />
       <Contact />
-      <Footer />
     </>
+  );
+}
+
+const pageVariants = {
+  initial: { opacity: 0, y: 18 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+  exit: { opacity: 0, y: -10, transition: { duration: 0.2, ease: "easeIn" } },
+};
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={location.pathname}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        <Routes location={location}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/carbon-emission-calculator" element={<CarbonCalculator />} />
+          <Route path="/publications/research-papers" element={<ResearchPapers />} />
+          <Route path="/publications/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogDetails />} />
+          <Route path="/careers" element={<Careers />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
@@ -35,10 +66,10 @@ function App() {
   return (
     <BrowserRouter>
 
-      {/* 🌍 GLOBAL CANVAS (applies to ALL routes) */}
+      {/* GLOBAL CANVAS (applies to ALL routes) */}
       <div className="relative bg-[#f7fbf8] overflow-hidden">
 
-        {/* 🌿 SHARED AMBIENT LIGHT SYSTEM */}
+        {/* SHARED AMBIENT LIGHT SYSTEM */}
         <div className="fixed inset-0 pointer-events-none z-0">
 
           {/* primary glow */}
@@ -58,27 +89,17 @@ function App() {
           />
         </div>
 
-        {/* 🌐 ACTUAL APP CONTENT */}
-        <div className="relative z-10">
+        {/* ACTUAL APP CONTENT */}
+        <div className="relative z-10 min-h-screen flex flex-col">
           <Header />
 
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/carbon-emission-calculator" element={<CarbonCalculator />} />
-            <Route
-              path="/publications/research-papers"
-              element={<ResearchPapers />}
-            />
-            <Route
-              path="/publications/blogs"
-              element={<Blogs />}
-            />
+          <main className="flex-grow">
+            <AnimatedRoutes />
+          </main>
 
-            <Route path="/blogs/:slug" element={<BlogDetails />} />
-
-            <Route path="/careers" element={<Careers />} />
-          </Routes>
+          <Footer />
         </div>
+
 
       </div>
     </BrowserRouter>

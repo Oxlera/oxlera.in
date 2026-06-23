@@ -2,27 +2,27 @@ import React from "react";
 
 function Careers() {
     const openings = [
-        {
-            role: "Full Stack Developer Intern",
-            type: "Internship",
-            location: "Remote",
-            description:
-                "Work on scalable sustainability platforms using React, Node.js, and cloud technologies.",
-        },
-        {
-            role: "AI/ML Engineer",
-            type: "Full Time",
-            location: "Hybrid",
-            description:
-                "Build intelligent systems for carbon accounting, emissions forecasting, and ESG analytics.",
-        },
-        {
-            role: "Frontend Engineer",
-            type: "Full Time",
-            location: "Remote",
-            description:
-                "Design and develop elegant user experiences for climate-tech dashboards and analytics products.",
-        },
+        // {
+        //     role: "Full Stack Developer Intern",
+        //     type: "Internship",
+        //     location: "Remote",
+        //     description:
+        //         "Work on scalable sustainability platforms using React, Node.js, and cloud technologies.",
+        // },
+        // {
+        //     role: "AI/ML Engineer",
+        //     type: "Full Time",
+        //     location: "Hybrid",
+        //     description:
+        //         "Build intelligent systems for carbon accounting, emissions forecasting, and ESG analytics.",
+        // },
+        // {
+        //     role: "Frontend Engineer",
+        //     type: "Full Time",
+        //     location: "Remote",
+        //     description:
+        //         "Design and develop elegant user experiences for climate-tech dashboards and analytics products.",
+        // },
     ];
 
     return (

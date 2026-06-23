@@ -80,11 +80,27 @@ function About() {
               enabling transparent emissions tracking and global climate accountability.
             </p>
 
-            <div className="mt-6 h-1 w-full bg-emerald-100 rounded-full overflow-hidden">
-              <div className="h-full w-[70%] bg-emerald-500" />
+            <ul className="mt-7 space-y-3">
+              {[
+                "GHG Protocol-aligned Scope 1, 2 & 3 tracking",
+                "Audit-ready ESG & BRSR reporting",
+                "Verified carbon credit generation",
+                "Real-time emissions dashboard",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5">
+                  <div className="mt-0.5 w-4 h-4 flex-shrink-0 rounded-full bg-emerald-100 flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                  </div>
+                  <span className="text-xs text-slate-600 leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 h-1 w-full bg-emerald-100 rounded-full overflow-hidden">
+              <div className="h-full w-[70%] bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full" />
             </div>
 
-            <p className="mt-4 text-xs text-emerald-800 font-semibold">
+            <p className="mt-3 text-xs text-emerald-800 font-semibold">
               Verified Carbon Infrastructure
             </p>
 
