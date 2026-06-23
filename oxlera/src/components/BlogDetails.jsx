@@ -1,71 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-import {
-    BLOCKS,
-    MARKS,
-} from "@contentful/rich-text-types";
-
-const richTextOptions = {
-    renderMark: {
-        [MARKS.BOLD]: (text) => (
-            <strong className="font-bold text-slate-900">
-                {text}
-            </strong>
-        ),
-
-        [MARKS.ITALIC]: (text) => (
-            <em className="italic text-emerald-700">
-                {text}
-            </em>
-        ),
-    },
-
-    renderNode: {
-        [BLOCKS.HEADING_1]: (_, children) => (
-            <h1 className="text-5xl font-bold mt-10 mb-6 text-slate-900">
-                {children}
-            </h1>
-        ),
-
-        [BLOCKS.HEADING_2]: (_, children) => (
-            <h2 className="text-3xl font-semibold mt-8 mb-4 text-slate-800">
-                {children}
-            </h2>
-        ),
-
-        [BLOCKS.HEADING_3]: (_, children) => (
-            <h3 className="text-2xl font-semibold mt-6 mb-3">
-                {children}
-            </h3>
-        ),
-
-        [BLOCKS.PARAGRAPH]: (_, children) => (
-            <p className="text-lg text-slate-600 leading-8 mb-6">
-                {children}
-            </p>
-        ),
-
-        [BLOCKS.UL_LIST]: (_, children) => (
-            <ul className="list-disc ml-6 mb-6 space-y-2">
-                {children}
-            </ul>
-        ),
-
-        [BLOCKS.OL_LIST]: (_, children) => (
-            <ol className="list-decimal ml-6 mb-6 space-y-2">
-                {children}
-            </ol>
-        ),
-
-        [BLOCKS.QUOTE]: (_, children) => (
-            <blockquote className="border-l-4 border-emerald-500 pl-6 italic text-slate-500 my-8">
-                {children}
-            </blockquote>
-        ),
-    },
-};
 
 function BlogDetails() {
     const { slug } = useParams();
@@ -76,28 +11,39 @@ function BlogDetails() {
         async function fetchBlog() {
             try {
                 const response = await fetch(
-                    `https://cdn.contentful.com/spaces/${import.meta.env.VITE_CONTENTFUL_SPACE_ID
-                    }/environments/master/entries?content_type=blogType&fields.slug=${slug}`,
+                    `${import.meta.env.VITE_STRAPI_URL}/api/blogs?filters[Slug][$eq]=${slug}`,
                     {
                         headers: {
-                            Authorization: `Bearer ${import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN}`,
+                            Authorization: `Bearer ${import.meta.env.VITE_STRAPI_TOKEN}`,
                         },
                     }
                 );
-                const data = await response.json();
 
-                const item = data.items[0];
+                const result = await response.json();
+
+                console.log("Fetched blog data:", result);
+
+                const item = result.data[0];
 
                 setBlog({
-                    title: item.fields.title || "",
-                    author: item.fields.author || "",
-                    publishDate: item.fields.publishDate || "",
-                    content: item.fields.content,
-                    category: item.fields.category || "",
-                    excerpt: item.fields.excerpt || "",
-                    tags: item.fields.tags
-                        ? item.fields.tags.split(",").map(tag => tag.trim())
+                    id: item.id,
+                    documentId: item.documentId,
+
+                    title: item.Title ?? "",
+                    excerpt: item.Excerpt ?? "",
+                    category: item.category ?? "General",
+
+                    slug: item.Slug ?? item.documentId,
+
+                    author: item.author ?? "Admin",
+
+                    publishDate: item.publishDate ?? item.publishedAt,
+
+                    tags: item.tags
+                        ? item.tags.split(",").map(tag => tag.trim())
                         : [],
+
+                    content: item.content ?? []
                 });
 
             } catch (err) {
@@ -109,11 +55,38 @@ function BlogDetails() {
     }, [slug]);
 
     if (!blog) {
-        return <div className="p-10">Loading...</div>;
+        return (
+            <section className="relative min-h-screen bg-[#fbfdfc] pt-28 pb-20 px-6 overflow-hidden">
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-[-20%] left-[-10%] w-[40rem] h-[40rem] bg-emerald-100/30 blur-[120px]" />
+                    <div className="absolute bottom-[-20%] right-[-10%] w-[35rem] h-[35rem] bg-blue-100/30 blur-[120px]" />
+                </div>
+                <div className="relative max-w-4xl mx-auto">
+                    <div className="h-4 w-24 bg-gray-200 rounded animate-pulse mb-10" />
+                    <div className="h-7 w-28 bg-gray-200 rounded-full animate-pulse mb-6" />
+                    <div className="h-12 w-3/4 bg-gray-200 rounded animate-pulse mb-3" />
+                    <div className="h-12 w-1/2 bg-gray-200 rounded animate-pulse mb-6" />
+                    <div className="h-5 w-full bg-gray-200 rounded animate-pulse mb-2" />
+                    <div className="h-5 w-4/5 bg-gray-200 rounded animate-pulse mb-8" />
+                    <div className="flex gap-3 mb-8">
+                        <div className="w-12 h-12 rounded-full bg-gray-200 animate-pulse" />
+                        <div className="flex flex-col gap-2 justify-center">
+                            <div className="h-4 w-32 bg-gray-200 rounded animate-pulse" />
+                            <div className="h-3 w-24 bg-gray-200 rounded animate-pulse" />
+                        </div>
+                    </div>
+                    <div className="space-y-4 mt-10">
+                        {[...Array(4)].map((_, i) => (
+                            <div key={i} className="h-5 bg-gray-200 rounded animate-pulse" style={{ width: `${[100, 90, 95, 75][i]}%` }} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
     }
 
     return (
-        <section className="min-h-screen bg-[#fbfdfc] pt-28 pb-20 px-6">
+        <section className="relative min-h-screen bg-[#fbfdfc] pt-28 pb-20 px-6 overflow-hidden">
 
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -187,11 +160,83 @@ function BlogDetails() {
                 </div>
 
                 {/* Divider */}
-                <article className="max-w-none">
-                    {documentToReactComponents(
-                        blog.content,
-                        richTextOptions
-                    )}
+                <article className="max-w-none mt-12">
+                    {blog.content?.map((block, index) => {
+                        switch (block.type) {
+                            case "heading":
+                                if (block.level === 1) {
+                                    return (
+                                        <h1
+                                            key={index}
+                                            className="text-5xl font-bold mt-10 mb-6 text-slate-900"
+                                        >
+                                            {block.children?.map(child => child.text).join("")}
+                                        </h1>
+                                    );
+                                }
+
+                                if (block.level === 2) {
+                                    return (
+                                        <h2
+                                            key={index}
+                                            className="text-3xl font-semibold mt-8 mb-4 text-slate-800"
+                                        >
+                                            {block.children?.map(child => child.text).join("")}
+                                        </h2>
+                                    );
+                                }
+
+                                if (block.level === 3) {
+                                    return (
+                                        <h3
+                                            key={index}
+                                            className="text-2xl font-semibold mt-6 mb-3"
+                                        >
+                                            {block.children?.map(child => child.text).join("")}
+                                        </h3>
+                                    );
+                                }
+
+                                return null;
+
+                            case "paragraph":
+                                return (
+                                    <p
+                                        key={index}
+                                        className="text-lg text-slate-600 leading-8 mb-6"
+                                    >
+                                        {block.children?.map(child => child.text).join("")}
+                                    </p>
+                                );
+
+                            case "list":
+                                return (
+                                    <ul
+                                        key={index}
+                                        className="list-disc ml-6 mb-6 space-y-2"
+                                    >
+                                        {block.children?.map((item, i) => (
+                                            <li key={i}>
+                                                {item.children?.map(c => c.text).join("")}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                );
+
+                            case "quote":
+                                return (
+                                    <blockquote
+                                        key={index}
+                                        className="border-l-4 border-emerald-500 pl-6 italic text-slate-500 my-8"
+                                    >
+                                        {block.children?.map(child => child.text).join("")}
+                                    </blockquote>
+                                );
+
+                            default:
+                                return null;
+                        }
+                    })}
                 </article>
 
 

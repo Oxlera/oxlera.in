@@ -47,7 +47,7 @@ function Features() {
   ];
 
   return (
-    <section className="relative py-24 sm:py-28 px-5 sm:px-8">
+    <section id="features" className="relative py-24 sm:py-28 px-5 sm:px-8">
 
       {/* subtle continuity fade (ONLY ONE, not full system) */}
       <div className="absolute top-0 left-0 right-0 h-[120px] bg-gradient-to-b from-[#f7fbf8] to-transparent pointer-events-none" />
@@ -56,6 +56,12 @@ function Features() {
 
         {/* HEADER */}
         <div className="mb-16 max-w-2xl">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-px w-12 bg-emerald-300/60" />
+            <span className="text-emerald-800 font-bold tracking-[0.25em] uppercase text-[10px]">
+              Platform Features
+            </span>
+          </div>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 leading-[1.05] tracking-[-0.03em]">
             Carbon data that{" "}
             <span className="text-emerald-800 italic font-light">

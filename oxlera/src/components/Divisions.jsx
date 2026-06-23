@@ -29,7 +29,7 @@ function Divisions() {
   ];
 
   return (
-    <section className="relative py-28 px-6">
+    <section id="metrics" className="relative py-28 px-6">
 
   {/* subtle section blend (NOT a divider, just continuity) */}
   <div className="absolute top-0 left-0 right-0 h-[120px] bg-gradient-to-b from-white/40 to-transparent pointer-events-none" />

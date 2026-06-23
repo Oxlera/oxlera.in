@@ -13,6 +13,13 @@ function NatureSection() {
         {/* LEFT */}
         <div className="flex flex-col">
 
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-px w-12 bg-emerald-300/60" />
+            <span className="text-emerald-800 font-bold tracking-[0.25em] uppercase text-[10px]">
+              Global Impact
+            </span>
+          </div>
+
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 leading-[1.05] tracking-tight">
             Nature Without Borders
           </h2>
