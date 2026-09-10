@@ -1,0 +1,70 @@
+# Local development stack: Postgres + Strapi CMS + Vite frontend.
+# Start with:  docker compose up --build
+#
+# NOTE: the secrets below are throwaway values for local development only.
+# Do not reuse them for any deployed environment.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+      POSTGRES_DB: strapi
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U strapi"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  strapi:
+    build: ./oxlera-st
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      HOST: 0.0.0.0
+      PORT: 1337
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+      DATABASE_SSL: "false"
+      # Dev-only placeholder secrets.
+      APP_KEYS: "devKeyA,devKeyB"
+      API_TOKEN_SALT: devApiTokenSalt
+      ADMIN_JWT_SECRET: devAdminJwtSecret
+      TRANSFER_TOKEN_SALT: devTransferTokenSalt
+      JWT_SECRET: devJwtSecret
+      ENCRYPTION_KEY: devEncryptionKey0123456789abcdef
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./oxlera-st:/app
+      - strapi_node_modules:/app/node_modules
+      - strapi_uploads:/app/public/uploads
+
+  frontend:
+    build: ./oxlera
+    depends_on:
+      - strapi
+    environment:
+      # The fetch runs in the browser on the host, so this must be localhost,
+      # not the compose service name.
+      VITE_STRAPI_URL: http://localhost:1337
+      VITE_STRAPI_TOKEN: ${VITE_STRAPI_TOKEN:-}
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./oxlera:/app
+      - frontend_node_modules:/app/node_modules
+
+volumes:
+  postgres_data:
+  strapi_node_modules:
+  strapi_uploads:
+  frontend_node_modules:

@@ -7,5 +7,11 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss()
-  ]
+  ],
+  server: {
+    host: true,
+    port: 5173,
+    // Poll for changes so HMR works through a bind mount (macOS/Windows).
+    watch: { usePolling: true }
+  }
 })

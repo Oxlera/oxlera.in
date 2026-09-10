@@ -1,0 +1,10 @@
+node_modules
+.tmp
+dist
+build
+.cache
+.strapi
+.strapi-updater.json
+.git
+.env
+*.log
